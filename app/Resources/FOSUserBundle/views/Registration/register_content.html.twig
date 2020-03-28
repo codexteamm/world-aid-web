@@ -1,0 +1,33 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+
+<div class="wrapper">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-lg-12 p-0">
+                <div class="contact-warp">
+                    <div class="section-title mb-0">
+                        <h2>Welcome</h2>
+                        <br>
+                    </div>
+
+                    <form class="contact-from" action="{{ path("fos_user_registration_register") }}" method="post">
+
+                        <div class="row">
+
+                            {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+                            {{ form_widget(form) }}
+                            <div>
+                                <input type="submit" value="{{ 'registration.submit'|trans }}" />
+                            </div>
+                            {{ form_end(form) }}
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

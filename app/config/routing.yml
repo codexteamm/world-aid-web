@@ -1,0 +1,21 @@
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+login:
+    path: /login
+    defaults:
+        _controller: AppBundle:Controller:DefaultController
+        template:    login.html.twig
+register:
+    path: /register
+    defaults:
+         _controller: AppBundle:Controller:DefaultController
+         template:    register.html.twig
+
+user_homepage:
+    path: /user_homepage
+    defaults:
+        _controller: AppBundle:Controller:DefaultController
+        template:    index2.html.twig

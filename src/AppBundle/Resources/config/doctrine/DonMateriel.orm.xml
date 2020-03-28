@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\DonMateriel" table="don_materiel">
+    <indexes>
+      <index name="id_association" columns="id_association"/>
+      <index name="id_benevole" columns="id_benevole"/>
+      <index name="id_evenement" columns="id_evenement"/>
+    </indexes>
+    <id name="reference" type="integer" column="reference">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="dateDon" type="date" column="date_don" nullable="false"/>
+    <field name="typeMateriel" type="string" column="type_materiel" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="quantite" type="float" column="quantite" precision="10" scale="0" nullable="false"/>
+    <many-to-one field="idAssociation" target-entity="User" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_association" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idBenevole" target-entity="User" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_benevole" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idEvenement" target-entity="Evenement" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_evenement" referenced-column-name="id_event"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
