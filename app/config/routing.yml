@@ -19,3 +19,7 @@ user_homepage:
     defaults:
         _controller: AppBundle:Controller:DefaultController
         template:    index2.html.twig
+easy_admin_bundle:
+    resource: "@EasyAdminBundle/Controller/AdminController.php"
+    type:     annotation
+    prefix:   /admin

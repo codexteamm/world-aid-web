@@ -24,7 +24,7 @@ class SecurityController extends Controller
     {
         $authChecker= $this->container->get('security.authorization_checker');
         if($authChecker->isGranted('ROLE_ADMIN')){
-            return $this->render('@App/Security/admin_home.html.twig');
+           // return $this->render('@App/Security/admin_home.html.twig');
         }
         else if ($authChecker->isGranted('ROLE_NECESSITEUX')){
             return $this->render('@App/Security/necessiteux_home.html.twig');

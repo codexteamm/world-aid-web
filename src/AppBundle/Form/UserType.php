@@ -3,8 +3,10 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 
 class UserType extends AbstractType
 {
@@ -16,6 +18,15 @@ class UserType extends AbstractType
         $builder
 
             ->add('nom')
+            ->add('roles',ChoiceType::class,[
+                'choices'=>['ADMIN' => 'ROLE_ADMIN',
+                    'NECESSITEUX' => 'ROLE_NECESSITEUX',
+                    'BENEVOLE' => 'ROLE_BENEVOLE',
+                    'ASSOCIATION' => 'ROLE_ASSOCIATION',
+        ],
+                'required' => true, 'multiple'=> true,'expanded' => false,
+           ] )
+
             ->add('prenom')
             ->add('pays')
             ->add('datenaissance')
@@ -30,6 +41,7 @@ class UserType extends AbstractType
             //->add('idcampementnull')
             //->add('idevenement')
             //->add('idcampement');
+
 
     }
 
