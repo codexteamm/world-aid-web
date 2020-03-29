@@ -1,3 +1,19 @@
+association:
+    resource: "@AssociationBundle/Resources/config/routing.yml"
+    prefix:   /association
+
+benevole:
+    resource: "@BenevoleBundle/Resources/config/routing.yml"
+    prefix:   /benevole
+
+admin:
+    resource: "@AdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+necessiteux:
+    resource: "@NecessiteuxBundle/Resources/config/routing.yml"
+    prefix:   /necessiteux
+
 app:
     resource: '@AppBundle/Controller/'
     type: annotation

@@ -1,0 +1,3 @@
+benevole_homepage:
+    path:     /
+    defaults: { _controller: BenevoleBundle:Default:index }

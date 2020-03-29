@@ -24,16 +24,16 @@ class SecurityController extends Controller
     {
         $authChecker= $this->container->get('security.authorization_checker');
         if($authChecker->isGranted('ROLE_ADMIN')){
-            return $this->render('@App/Security/admin_home.html.twig');
+            return $this->render('@Admin/admin_home.html.twig');
         }
         else if ($authChecker->isGranted('ROLE_NECESSITEUX')){
-            return $this->render('@App/Security/necessiteux_home.html.twig');
+            return $this->render('@Necessiteux/necessiteux_home.html.twig');
         }
         else if ($authChecker->isGranted('ROLE_BENEVOLE')){
-            return $this->render('@App/Security/benevole_home.html.twig');
+            return $this->render('@Benevole/benevole_home.html.twig');
         }
         else if ($authChecker->isGranted('ROLE_ASSOCIATION')){
-            return $this->render('@App/Security/association_home.html.twig');
+            return $this->render('@Association/association_home.html.twig');
         }
         else{
             return $this->render('@FOSUser/Security/login.html.twig');

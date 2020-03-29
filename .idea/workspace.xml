@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a842a3c4-ff1c-4858-af5f-2f1300335148" name="Default Changelist" comment="" />
+    <list default="true" id="a842a3c4-ff1c-4858-af5f-2f1300335148" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/AdminBundle/Resources/views/admin_home.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/AssociationBundle/Resources/views/association_home.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BenevoleBundle/Resources/views/benevole_home.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/NecessiteuxBundle/Resources/views/necessiteux_home.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/world_aid.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/world_aid.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/AppKernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/AppKernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/layout.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/default/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/default/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/routing.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/SecurityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Form/UserType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Form/UserType.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,7 +86,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Resources/FOSUserBundle/views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/BenevoleBundle/Resources/views" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -81,18 +96,18 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\wamp64\www\world_aid-master\app\Resources\FOSUserBundle\views" />
-      <recent name="C:\wamp64\www\world_aid-master\app\Resources\views\default" />
-      <recent name="C:\wamp64\www\world_aid-master\web" />
-      <recent name="C:\wamp64\www\world_aid-master\app\Resources\FOSUserBundle\Security" />
-      <recent name="C:\wamp64\www\world_aid-master\app\Resources\views" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\world_aid-master\app\Resources\views" />
       <recent name="C:\wamp64\www\world_aid-master\app\Resources\FOSUserBundle\views" />
       <recent name="C:\wamp64\www\world_aid-master\app\Resources" />
       <recent name="C:\wamp64\www\world_aid-master\web" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\world_aid-master\src\BenevoleBundle\Resources\views" />
+      <recent name="C:\wamp64\www\world_aid-master\src\NecessiteuxBundle\Resources\views" />
+      <recent name="C:\wamp64\www\world_aid-master\src\AssociationBundle\Resources\views" />
+      <recent name="C:\wamp64\www\world_aid-master\src\AdminBundle\Resources\views" />
+      <recent name="C:\wamp64\www\world_aid-master\src\AppBundle\Form" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -124,7 +139,9 @@
       <workItem from="1585227002733" duration="20148000" />
       <workItem from="1585272579004" duration="405000" />
       <workItem from="1585314226439" duration="21679000" />
-      <workItem from="1585406820489" duration="18127000" />
+      <workItem from="1585406820489" duration="23369000" />
+      <workItem from="1585490079768" duration="3343000" />
+      <workItem from="1585499896566" duration="3829000" />
     </task>
     <servers />
   </component>
@@ -132,6 +149,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="540" y="220" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1585431981942">
+      <screen x="0" y="0" width="1536" height="832" />
+    </state>
+    <state x="540" y="220" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.832@0.0.1536.832" timestamp="1585431981942" />
     <state x="554" y="128" key="#com.intellij.ide.util.MemberChooser" timestamp="1584974803154">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -140,14 +161,14 @@
       <screen x="0" y="0" width="1536" height="832" />
     </state>
     <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.832@0.0.1536.832" timestamp="1585264675845" />
-    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1585227439659">
+    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1585432061156">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
-    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.832@0.0.1536.832" timestamp="1585227439659" />
-    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1585344780107">
+    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.832@0.0.1536.832" timestamp="1585432061156" />
+    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1585500094332">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
-    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.832@0.0.1536.832" timestamp="1585344780107" />
+    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.832@0.0.1536.832" timestamp="1585500094332" />
     <state x="277" y="60" key="SettingsEditor" timestamp="1585227253364">
       <screen x="0" y="0" width="1536" height="832" />
     </state>

@@ -1,0 +1,3 @@
+necessiteux_homepage:
+    path:     /
+    defaults: { _controller: NecessiteuxBundle:Default:index }
