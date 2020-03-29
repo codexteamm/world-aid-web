@@ -6,10 +6,6 @@ benevole:
     resource: "@BenevoleBundle/Resources/config/routing.yml"
     prefix:   /benevole
 
-admin:
-    resource: "@AdminBundle/Resources/config/routing.yml"
-    prefix:   /admin
-
 necessiteux:
     resource: "@NecessiteuxBundle/Resources/config/routing.yml"
     prefix:   /necessiteux
@@ -35,3 +31,7 @@ user_homepage:
     defaults:
         _controller: AppBundle:Controller:DefaultController
         template:    index2.html.twig
+easy_admin_bundle:
+    resource: "@EasyAdminBundle/Controller/AdminController.php"
+    type:     annotation
+    prefix:   /dashboard

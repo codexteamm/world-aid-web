@@ -3,9 +3,10 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: "@NecessiteuxBundle/Resources/config/services.yml" }
-    - { resource: "@AdminBundle/Resources/config/services.yml" }
     - { resource: "@BenevoleBundle/Resources/config/services.yml" }
     - { resource: "@AssociationBundle/Resources/config/services.yml" }
+    - { resource: services.yml }
+    - { resource: external/easy_admin.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -13,11 +14,13 @@ parameters:
     locale: en
 
 framework:
-    translator: ~
+    #translator: ~
+    translator:
+        fallbacks: [ "en" ]
     templating:
         engines: ['twig']
     #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
+
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -86,3 +89,9 @@ fos_user:
     from_email:
         address: "mohamedamine.daghbouji@esprit.tn"
         sender_name: "amine"
+
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+        cssrewrite: ~

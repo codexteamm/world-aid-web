@@ -19,9 +19,10 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new NecessiteuxBundle\NecessiteuxBundle(),
-            new AdminBundle\AdminBundle(),
             new BenevoleBundle\BenevoleBundle(),
             new AssociationBundle\AssociationBundle(),
+            new EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle(),
+            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
