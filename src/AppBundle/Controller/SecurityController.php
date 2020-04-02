@@ -37,7 +37,7 @@ class SecurityController extends Controller
             return $this->render('@Benevole/benevole_home.html.twig');
         }
         else if ($authChecker->isGranted('ROLE_ASSOCIATION')){
-            return $this->render('@Association/association_home.html.twig');
+            return $this->render('@Association/Default/index.html.twig');
         }
         else{
             return $this->render('@FOSUser/Security/login.html.twig');

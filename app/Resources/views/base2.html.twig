@@ -24,6 +24,9 @@
     <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}"/>
 
 
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+
+
     <!-- Main Stylesheets -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
 
@@ -56,19 +59,12 @@
         </div>
     </div>
     <ul class="main-menu">
+
         <li><a href="">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Pages</a>
-            <ul class="sub-menu">
-                <li><a href="category.html">Category</a></li>
-                <li><a href="playlist.html">Playlist</a></li>
-                <li><a href="artist.html">Artist</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </li>
-        <li><a href="blog.html">News</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        {% block header %}
+
+        {% endblock header %}
+
     </ul>
 </header>
 <!-- Header section end -->
@@ -143,7 +139,8 @@
 <script src="{{ asset('js/mixitup.min.js') }}"/></script>
 <script src="{{ asset('js/main.js') }}"/></script>
 <script src="{{ asset('js/mixitup.min.js') }}"/></script>
-
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<script src="{{ asset('js/sofien.js') }}"/></script>
 {% endblock %}
 
 </body>

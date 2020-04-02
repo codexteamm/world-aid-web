@@ -308,7 +308,12 @@ class User extends BaseUser
     {
         $this->idcampement = $idcampement;
     }
+    public function addcampement(Campement $user)
+    {
+        $this->idcampement[] = $user;
 
+        return $this;
+    }
     /**
      * @return string
      */

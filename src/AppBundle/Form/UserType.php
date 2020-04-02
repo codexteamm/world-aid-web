@@ -29,24 +29,23 @@ class UserType extends AbstractType
                     'NECESSITEUX' => 'ROLE_NECESSITEUX',
                     'BENEVOLE' => 'ROLE_BENEVOLE',
                     'ASSOCIATION' => 'ROLE_ASSOCIATION',
-        ],
+                ],
                 'required' => true, 'multiple'=> true,'expanded' => false,
-           ] )
+            ] )
 
             ->add('prenom')
             ->add('pays')
             ->add('datenaissance')
             ->add('descriptioncassocial')
-            ->add('valide')
             ->add('nomassociaiton')
             ->add('rib')
             ->add('addresse')
             ->add('categorie')
             ->add('logo')
             ->add('numero');
-            //->add('idcampementnull')
-            //->add('idevenement')
-            //->add('idcampement');
+        //->add('idcampementnull')
+        //->add('idevenement')
+        //->add('idcampement');
 
 
     }

@@ -1,7 +1,7 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 
-
+{#
 <div class="wrapper">
     <div class="container-fluid">
         <div class="row">
@@ -19,6 +19,7 @@
 
                             {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
                             {{ form_widget(form) }}
+                            {{ form_widget(form, { 'attr': {'class': 'dropdown'} }) }}
                             <div>
                                 <input class="site-btn" type="submit"  id="_submit"   value="{{ 'registration.submit'|trans }}" />
                             </div>
@@ -31,3 +32,199 @@
         </div>
     </div>
 </div>
+#}
+
+
+<div class="wrapper">
+    <div class="container-fluid">
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+<h3 class="font-green">Register Form</h3>
+<div class="form-group">
+    {{ form_widget(form.username, { 'attr': {'class': 'form-control placeholder-no-fix', 'placeholder':'User Name'} }) }}
+    {% for errorItem in form.username.vars.errors %}
+        <span class="help-inline">{{ errorItem.message }}</span>
+    {% endfor %}
+</div>
+<div class="form-group">
+    {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder':'E-mail'} }) }}
+    {% for errorItem in form.email.vars.errors %}
+        <span class="help-inline">{{ errorItem.message }}</span>
+    {% endfor %}
+</div>
+<div class="form-group">
+    {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder':'Password'} }) }}
+    {% for errorItem in form.plainPassword.first.vars.errors %}
+        <span class="help-inline">{{ errorItem.message }}</span>
+    {% endfor %}
+</div>
+<div class="form-group">
+    {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder':'Repeat Password'} }) }}
+    {% for errorItem in form.plainPassword.second.vars.errors %}
+        <span class="help-inline">{{ errorItem.message }}</span>
+    {% endfor %}
+</div>
+
+        <div class="form-group">
+            {{ form_widget(form.nom, { 'attr': {'class': 'form-control placeholder-no-fix', 'placeholder':'nom' , 'id':'nom'} }) }}
+            {% for errorItem in form.nom.vars.errors %}
+                <span class="help-inline">{{ errorItem.message }}</span>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.prenom, { 'attr': {'class': 'form-control placeholder-no-fix', 'placeholder':'prenom'} }) }}
+            {% for errorItem in form.prenom.vars.errors %}
+                <span class="help-inline">{{ errorItem.message }}</span>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.nom, { 'attr': {'class': 'form-control placeholder-no-fix', 'placeholder':'nom'} }) }}
+            {% for errorItem in form.nom.vars.errors %}
+                <span class="help-inline">{{ errorItem.message }}</span>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.descriptioncassocial, { 'attr': {'class': 'form-control placeholder-no-fix', 'placeholder':'Description cas social'} }) }}
+            {% for errorItem in form.descriptioncassocial.vars.errors %}
+                <span class="help-inline">{{ errorItem.message }}</span>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.nomassociaiton, { 'attr': {'class': 'form-control placeholder-no-fix', 'placeholder':'nom'} }) }}
+            {% for errorItem in form.nomassociaiton.vars.errors %}
+                <span class="help-inline">{{ errorItem.message }}</span>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.rib, { 'attr': {'class': 'form-control placeholder-no-fix', 'placeholder':'Rib'} }) }}
+            {% for errorItem in form.rib.vars.errors %}
+                <span class="help-inline">{{ errorItem.message }}</span>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.addresse, { 'attr': {'class': 'form-control placeholder-no-fix', 'placeholder':'adresse'} }) }}
+            {% for errorItem in form.addresse.vars.errors %}
+                <span class="help-inline">{{ errorItem.message }}</span>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.categorie, { 'attr': {'class': 'form-control placeholder-no-fix', 'placeholder':'categorie'} }) }}
+            {% for errorItem in form.categorie.vars.errors %}
+                <span class="help-inline">{{ errorItem.message }}</span>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.numero, { 'attr': {'class': 'form-control placeholder-no-fix', 'placeholder':'numero'} }) }}
+            {% for errorItem in form.numero.vars.errors %}
+                <span class="help-inline">{{ errorItem.message }}</span>
+            {% endfor %}
+        </div>
+            <div class="form-group">
+                    {{ form_widget(form.logo, { 'attr': {'class': 'form-control placeholder-no-fix', 'placeholder':'logo'} }) }}
+                    {% for errorItem in form.logo.vars.errors %}
+                            <span class="help-inline">{{ errorItem.message }}</span>
+                    {% endfor %}
+            </div>
+        <div class="form-group">
+            {{ form_widget(form.pays, { 'attr': {'class': 'form-control placeholder-no-fix', 'placeholder':'pays'} }) }}
+            {% for errorItem in form.pays.vars.errors %}
+                <span class="help-inline">{{ errorItem.message }}</span>
+            {% endfor %}
+        </div>
+            <div class="form-group">
+                    {{ form_widget(form.datenaissance, { 'attr': {'class': 'form-control input-inline datetimepicker','data-provide': 'datetimepicker','data-format' : 'dd-mm-yyyy'} }) }}
+                    {% for errorItem in form.datenaissance.vars.errors %}
+                            <span class="help-inline">{{ errorItem.message }}</span>
+                    {% endfor %}
+            </div>
+
+        <div>
+            <input class="site-btn" type="submit"  id="_submit"   value="{{ 'registration.submit'|trans }}" />
+        </div>
+        {{ form_rest(form) }}
+        {{ form_end(form) }}
+</div>
+</div>
+
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"/></script>
+<script type="text/javascript">
+
+    function hideall(){
+    $("#fos_user_registration_form_pays").hide();
+    $("#fos_user_registration_form_pays").hide();
+    $("#fos_user_registration_form_nom").hide();
+    $("#fos_user_registration_form_prenom").hide();
+    $("#fos_user_registration_form_descriptioncassocial").hide();
+    $("#fos_user_registration_form_logo").hide();
+    //$("#fos_user_registration_form_valide").hide();
+    $("#fos_user_registration_form_numero").hide();
+    $("#fos_user_registration_form_nomassociaiton").hide();
+    $("#fos_user_registration_form_rib").hide();
+    $("#fos_user_registration_form_addresse").hide();
+    $("#fos_user_registration_form_categorie").hide();
+    $("#fos_user_registration_form_datenaissance").hide();
+
+}
+    $(document).ready(function () {
+
+hideall();
+
+
+
+
+/*
+fos_user_registration_form_username
+fos_user_registration_form_email
+*/
+
+
+
+        $('#fos_user_registration_form_roles').change( function () {
+            console.log(this.value);
+            if( this.value == "ROLE_ASSOCIATION") {
+
+                //$('#fos_user_registration_form_nomassociaiton > .form-group').hide();
+                hideall();
+                $("#fos_user_registration_form_pays").show();
+                $("#fos_user_registration_form_nomassociaiton").show();
+                $("#fos_user_registration_form_rib").show();
+                $("#fos_user_registration_form_addresse").show();
+                $("#fos_user_registration_form_categorie").show();
+                $("#fos_user_registration_form_numero").show();
+            }else if ( this.value == "ROLE_NECESSITEUX") {
+                hideall();
+                $("#fos_user_registration_form_nom").show();
+                $("#fos_user_registration_form_prenom").show();
+                $("#fos_user_registration_form_pays").show();
+                $("#fos_user_registration_form_datenaissance").show();
+                $("#fos_user_registration_form_addresse").show();
+                $("#fos_user_registration_form_numero").show();
+
+                //$('#fos_user_registration_form_nomassociaiton > .form-group').hide();
+
+
+            }else if ( this.value == "ROLE_BENEVOLE") {
+                hideall();
+                $("#fos_user_registration_form_nom").show();
+                $("#fos_user_registration_form_prenom").show();
+                $("#fos_user_registration_form_pays").show();
+                $("#fos_user_registration_form_datenaissance").show();
+                $("#fos_user_registration_form_addresse").show();
+                $("#fos_user_registration_form_numero").show();
+
+
+
+                //$('#fos_user_registration_form_nomassociaiton > .form-group').hide();
+
+
+            }
+
+        });
+
+
+
+
+
+    })
+</script>{% endblock javascripts %}

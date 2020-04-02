@@ -1,16 +1,31 @@
 {% extends 'base.html.twig' %}
+            {% block header %}
+                <li><a href="#">About</a></li>
+                <li><a href="#">Pages</a>
+                    <ul class="sub-menu">
+                        <li><a href="category.html">Category</a></li>
+                        <li><a href="playlist.html">Playlist</a></li>
+                        <li><a href="artist.html">Artist</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </li>
+                <li><a href="blog.html">News</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            {% endblock header %}
 
 {% block body %}
+
 
     <!-- Hero section -->
     <section class="hero-section">
         <div class="hero-slider owl-carousel">
-            <div class="hs-item">
-                <div class="container">
+            <div class="hs-item" style="background-image: url({{ asset('img/Capture1.PNG') }});">
+                <div class="container"  >
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="hs-text">
-                                <h2><span>Music</span> for everyone.</h2>
+                                <h2><span> WORLD AID</span> for everyone.</h2>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. </p>
                                 <a href="#" class="site-btn">Download Now</a>
                                 <a href="#" class="site-btn sb-c2">Start free trial</a>
@@ -18,8 +33,8 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="hr-img">
-                                <img src="{{ asset('img/hero-bg.png') }}" alt=""/>
-
+                               {# <img src="{{ asset('img/hero-bg.png') }}" alt=""/>
+#}s
                             </div>
                         </div>
                     </div>
@@ -38,8 +53,6 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="hr-img">
-
-                                <img src="{{ asset('img/hero-bg.png') }}" alt=""/>
 
                             </div>
                         </div>
@@ -242,4 +255,4 @@
     </section>
     <!-- Premium section end -->
 
-{% endblock %}
+{% endblock  body %}

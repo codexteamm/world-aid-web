@@ -1,0 +1,44 @@
+
+{% extends "AssociationBundle:Default:index.html.twig" %}
+
+{% block title %}AssociationBundle:campement:showMine{% endblock %}
+
+{% block body %}
+
+<h1>Welcome to the campement:showAll page</h1>
+<table border="1">
+    <tr>
+        <td>Ref</td>
+        <td>Titre</td>
+        <td>Description</td>
+        <td>Date de Début</td>
+        <td>Date de Fin</td>
+
+        {% for listecamp in listecamp %}
+    <tr>
+
+        <td>
+            {{ listecamp.nom }}
+        </td>
+        <td>
+            {{ listecamp.description }}
+        </td>
+
+        <td>
+            {{ listecamp.longitude}}
+        </td>
+        <td>
+            {{ listecamp.latitude}}
+        </td>
+        <td>
+            {{ listecamp.paye}}
+        </td>
+
+        <td><a href="{{ path('edit',{'id':listecamp.id}) }}">Modifier</a></td>
+
+
+
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

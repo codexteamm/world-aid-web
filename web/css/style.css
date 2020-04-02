@@ -38,6 +38,9 @@ h6 {
 	background-color: #fff;
 	border: 1px solid rgba(0,0,0,0.5);
 }
+.map{
+	height:700px ;
+}
 
 h1 {
 	font-size: 70px;
@@ -144,7 +147,7 @@ Commom elements
 	padding: 23px 20px;
 	border-radius: 50px;
 	text-transform: uppercase;
-	background: #fc0254;
+	background: #66bf00;
 	color: #fff;
 	line-height: normal;
 	cursor: pointer;
@@ -264,7 +267,7 @@ Header section
 }
 
 .header-right .user-panel .register {
-	color: #fc0254;
+	color: #66bf00;
 	margin-right: 0;
 }
 
@@ -293,7 +296,7 @@ Header section
 }
 
 .main-menu li a:hover {
-	color: #fc0254;
+	color: #66bf00;
 }
 
 .main-menu li:first-child a {
@@ -336,7 +339,7 @@ Header section
 }
 
 .main-menu .sub-menu li a:hover {
-	color: #fc0254;
+	color: #66bf00;
 }
 
 .slicknav_menu {
@@ -361,6 +364,7 @@ Hero section
 	-ms-flex-align: center;
 	align-items: center;
 	background: #0a183d;
+
 }
 
 .hs-item h2 {
@@ -374,7 +378,7 @@ Hero section
 }
 
 .hs-item h2 span {
-	color: #fc0254;
+	color: #66bf00;
 }
 
 .hs-item p {
@@ -462,7 +466,7 @@ Hero section
 }
 
 .hero-slider .owl-dots .owl-dot.active {
-	background: #fc0254;
+	background: #66bf00;
 }
 
 /* ----------------
@@ -487,7 +491,7 @@ How section
 	width: 57px;
 	height: 57px;
 	border-radius: 50%;
-	background: #fc0254;
+	background: #66bf00;
 	margin-bottom: 25px;
 }
 
@@ -544,7 +548,7 @@ Subscription section
 }
 
 .sub-text h3 {
-	color: #fc0254;
+	color: #66bf00;
 	margin-bottom: 30px;
 	font-weight: 500;
 }
@@ -682,7 +686,7 @@ Playlist page
 }
 
 .playlist-filter li.mixitup-control-active {
-	border-bottom: 2px solid #fc0254;
+	border-bottom: 2px solid #66bf00;
 }
 
 .playlist-item {
@@ -724,7 +728,7 @@ Playlist page
 	border-radius: 80px;
 	color: #fff;
 	font-size: 15px;
-	background: #fc0254;
+	background: #66bf00;
 }
 
 /* ----------------
@@ -742,7 +746,7 @@ Blog page
 .blog-item .blog-date {
 	font-size: 12px;
 	font-weight: 600;
-	color: #fc0254;
+	color: #66bf00;
 	margin-bottom: 24px;
 }
 
@@ -871,7 +875,7 @@ Category page
 }
 
 .category-links a.active {
-	border-bottom: 2px solid #fc0254;
+	border-bottom: 2px solid #66bf00;
 }
 
 .category-item {
@@ -916,7 +920,7 @@ Category page
 	height: 71px;
 	right: 29px;
 	bottom: 21px;
-	color: #fc0254;
+	color: #66bf00;
 	font-size: 16px;
 	text-align: center;
 	border-radius: 50%;
@@ -1010,7 +1014,7 @@ Category page
 }
 
 .jp-play {
-	background: #fc0254;
+	background: #66bf00;
 }
 
 .jp-play:after {
@@ -1147,7 +1151,7 @@ Artest Page
 	top: calc(50% - 35px);
 	border: none;
 	border-radius: 50%;
-	color: #fc0254;
+	color: #66bf00;
 	background: #fff;
 }
 
@@ -1483,7 +1487,7 @@ Responsive
 	}
 	.slicknav_nav a:hover {
 		border-radius: 0;
-		color: #fc0254;
+		color: #66bf00;
 		background: transparent;
 	}
 	.slicknav_btn {
@@ -1619,7 +1623,7 @@ Responsive
 	}
 	.slicknav_nav a:hover {
 		border-radius: 0;
-		color: #fc0254;
+		color: #66bf00;
 		background: transparent;
 	}
 	.slicknav_btn {

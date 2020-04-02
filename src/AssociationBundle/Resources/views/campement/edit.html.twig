@@ -1,0 +1,23 @@
+{% extends "AssociationBundle:Default:index.html.twig" %}
+
+
+{% block title %}AssociationBundle:campement:showAll{% endblock %}
+
+{% block body %}
+
+<center><h1>modifier</h1>
+    <fieldset style="width: 50%">
+        <form method="POST">
+            Nom: <input type="text" name="nom" value="{{campement.nom}}">
+            <br/>
+            description: <input type="text" name="description" value="{{ campement.description }}"><br/>
+            paye: <input type="text" name="paye" value="{{ campement.paye }}"><br/>
+            longitude: <input type="text" name="longitude" value="{{ campement.longitude }}">
+            longitude: <input type="text" name="latitude" value="{{ campement.latitude }}">
+            <br/>
+
+            <input type="submit" value="Enregistrer">
+        </form>
+    </fieldset>
+</center>
+{% endblock %}

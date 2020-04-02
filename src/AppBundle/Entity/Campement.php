@@ -8,8 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
  * Campement
  *
  * @ORM\Table(name="campement")
- * @ORM\Entity
- */
+ * @ORM\Entity(repositoryClass="AssociationBundle\Repository\campementRepository")
+*/
 class Campement
 {
     /**

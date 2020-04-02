@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a842a3c4-ff1c-4858-af5f-2f1300335148" name="Default Changelist" comment="">
+<<<<<<< Updated upstream
 <<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/src/AdminBundle/Resources/views/admin_home.html.twig" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/AssociationBundle/Resources/views/association_home.html.twig" afterDir="false" />
@@ -36,6 +37,10 @@
       <change beforePath="$PROJECT_DIR$/var/SymfonyRequirements.php" beforeDir="false" afterPath="$PROJECT_DIR$/var/SymfonyRequirements.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/config.php" afterDir="false" />
 >>>>>>> 24539175ea51fe0499bac2d9d2d4df8a2b1f5029
+=======
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,8 +187,12 @@
 =======
       <workItem from="1585406820489" duration="18127000" />
       <workItem from="1585431715159" duration="7020000" />
+<<<<<<< Updated upstream
       <workItem from="1585494691492" duration="5511000" />
 >>>>>>> 24539175ea51fe0499bac2d9d2d4df8a2b1f5029
+=======
+      <workItem from="1585494691492" duration="13313000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
