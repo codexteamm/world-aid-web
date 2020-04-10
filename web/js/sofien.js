@@ -5,7 +5,7 @@ var tileLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.p
 //remember last position
 var rememberLat = document.getElementById('appbundle_campement_latitude').value;
 var rememberLong = document.getElementById('appbundle_campement_longitude').value;
-if( !rememberLat || !rememberLong ) { rememberLat = 18.53; rememberLong = 73.85;}
+if( !rememberLat || !rememberLong ) { rememberLat = 36.527294814546; rememberLong =10.5029296875;}
 var map = new L.Map('map', {
     'center': [rememberLat, rememberLong],
     'zoom': 12,

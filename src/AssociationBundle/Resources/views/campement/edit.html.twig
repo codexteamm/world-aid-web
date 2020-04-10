@@ -1,4 +1,4 @@
-{% extends "AssociationBundle:Default:index.html.twig" %}
+{#{% extends "AssociationBundle:Default:index.html.twig" %}
 
 
 {% block title %}AssociationBundle:campement:showAll{% endblock %}
@@ -8,12 +8,7 @@
 <center><h1>modifier</h1>
     <fieldset style="width: 50%">
         <form method="POST">
-            Nom: <input type="text" name="nom" value="{{campement.nom}}">
-            <br/>
-            description: <input type="text" name="description" value="{{ campement.description }}"><br/>
-            paye: <input type="text" name="paye" value="{{ campement.paye }}"><br/>
-            longitude: <input type="text" name="longitude" value="{{ campement.longitude }}">
-            longitude: <input type="text" name="latitude" value="{{ campement.latitude }}">
+
             <br/>
 
             <input type="submit" value="Enregistrer">
@@ -21,3 +16,66 @@
     </fieldset>
 </center>
 {% endblock %}
+#}
+{#% form_theme form 'bootstrap_4_layout.html.twig' %}#}
+{% extends "AssociationBundle:Default:index.html.twig" %}
+
+
+{% block body %}
+    <div class="wrapper1">
+        <div class="row" style="height:550px;">
+
+
+            <div class="col-md-6 maps">
+                <div id="map" style="position: relative;height: 400px;width: 350px;"></div>
+            </div>
+            <div class="col-md-6 maps">
+                <div class="form-group">
+                    <label for="nom">nom</label>
+                    <input type="text" class="form-control" id="nom"  name="nom" value="{{campement.nom}}" >
+
+                </div>
+                <div class="form-group">
+                    <label for="description">description</label>
+                    <textarea  type="text" class="form-control"  id="description" name="description" value="{{ campement.description }}" rows="3" ></textarea>
+
+                </div>
+
+
+             {#
+                Nom: <input type="text" class="form-control"   name="description" value="{{ campement.longitude }}">
+                <br/>
+
+                description: <input type="text" name="description" value="{{ campement.description }}"><br/>
+                paye: <input type="text" name="paye" value="{{ campement.paye }}"><br/>
+                longitude: <input type="text" name="longitude" value="{{ campement.longitude }}">
+                longitude: <input type="text" name="latitude" value="{{ campement.latitude }}">#}
+                {# form(form) }}#}
+
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+{% block supscirpt %}
+
+<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<script >
+
+    var map = L.map('map').setView([51.505, -0.09], 7);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    L.marker([{{ campement.latitude }},{{ campement.longitude }}]).addTo(map)
+
+
+    map.panTo([{{ campement.latitude }},{{ campement.longitude }}])
+
+</script>
+{% endblock %}
+
+
+

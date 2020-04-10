@@ -153,7 +153,7 @@ class Campement
     }
 
     /**
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\array
      */
     public function getIdassociation()
     {
@@ -178,6 +178,7 @@ class Campement
     /**
      * Constructor
      */
+
     public function __construct()
     {
         $this->idassociation = new \Doctrine\Common\Collections\ArrayCollection();

@@ -24,3 +24,16 @@ delete:
 takeCharge:
     path:     /takeCharge/{id}
     defaults: { _controller: AssociationBundle:campement:takeCharge }
+nontakeCharge:
+    path:     /nontakeCharge/{id}
+    defaults: { _controller: AssociationBundle:campement:nontakeCharge }
+contact:
+    path:     /contact
+    defaults: { _controller: AssociationBundle:campement:contact }
+ajax_search:
+    path:     /search
+    defaults: { _controller: AssociationBundle:campement:search }
+
+recherche:
+    path:     /camps
+    defaults: { _controller: AssociationBundle:campement:recherche}

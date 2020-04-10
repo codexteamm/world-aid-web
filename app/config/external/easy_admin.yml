@@ -7,3 +7,4 @@ easy_admin:
     - AppBundle\Entity\DonMateriel
     - AppBundle\Entity\Evenement
     - AppBundle\Entity\Feedback
+    - AssociationBundle\Entity\Contact

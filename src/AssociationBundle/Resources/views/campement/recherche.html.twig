@@ -5,21 +5,38 @@
 {% block body %}
 
 
-        <h1 style="margin-top: 20px ;text-align:center; ">all camps</h1>
+    <h1 style="margin-top: 20px ;text-align:center; ">all camps</h1>
+    {{ form_start(form) }}
+    <div class="form-row align-items-end">
+        <div class="col-md-2" style="padding-left: 70px">
+            {{ form_row(form.nom) }}
 
-<div class="row" style="margin-top: 100px ; margin-left: 50px ; margin-right: 50px; margin-bottom: 50px" >
+        </div>
+
+        <div class="col-md-2">
+            {{ form_row(form.paye) }}
+
+        </div>
+        <div class="col-md-2">
+
+                {{ form_row(form.chercher) }}
+
+
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+    <div class="row" style="margin-top: 100px ; margin-left: 50px ; margin-right: 50px; margin-bottom: 50px" >
 
         <div class="col-md-7 maps">
-            <input class="filter" placeholder="filter" style="margin-bottom: 30px;"/>
+       {#     <input class="filter" placeholder="filter" style="margin-bottom: 30px;"/>
             <div class="sidebar-search">
                 <div class="input-group custom-search-form">
                     <input type="text" id="search"  placeholder="search..." style="margin-bottom: 30px;">
                 </div>
                 <!-- /input-group -->
             </div>
-
-
-
+#}
 
             <div class="row" id="entitiesNav">
 
@@ -38,7 +55,7 @@
                                 {% if listecamp not in user.idcampement %}
                                     <a href="{{ path('takeCharge',{'id':listecamp.id}) }}" class="btn btn-success">takeCharge</a>
                                 {% endif %}
-       {% if listecamp not in user.idcampement %}{% endif %}
+                                {% if listecamp not in user.idcampement %}{% endif %}
 
 
                             </div>
@@ -47,6 +64,7 @@
                 {% endfor %}
 
             </div>
+
             <div class="text-center">{{ knp_pagination_render(listecamp) }}</div>
 
         </div>
@@ -54,7 +72,7 @@
             <div class="map1", id="map1" style="height: 400px; width: 400px; margin-right: 50px">test</div>
 
         </div>
-</div>
+    </div>
 
 
 {% endblock body %}

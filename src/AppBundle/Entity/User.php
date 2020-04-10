@@ -308,12 +308,28 @@ class User extends BaseUser
     {
         $this->idcampement = $idcampement;
     }
-    public function addcampement(Campement $user)
+
+    public function addcampement(Campement $campement)
     {
-        $this->idcampement[] = $user;
+        if ($this->idcampement->contains($campement)) {
+            return;
+        }
+        $this->idcampement[] = $campement;
 
         return $this;
     }
+    public function removecampement(Campement $campement)
+    {
+        if ($this->idcampement->contains($campement)) {
+            $this->idcampement->removeElement($campement);
+
+        }
+
+        return $this;
+    }
+
+
+
     /**
      * @return string
      */
@@ -457,6 +473,7 @@ class User extends BaseUser
     {
         $this->rib = $rib;
     }
+
 
     /**
      * Constructor

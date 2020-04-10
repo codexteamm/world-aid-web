@@ -31,10 +31,10 @@ class SecurityController extends Controller
 
         }
         else if ($authChecker->isGranted('ROLE_NECESSITEUX')){
-            return $this->render('@Necessiteux/necessiteux_home.html.twig');
+            return $this->render('@Necessiteux/Default/index.html.twig');
         }
         else if ($authChecker->isGranted('ROLE_BENEVOLE')){
-            return $this->render('@Benevole/benevole_home.html.twig');
+            return $this->render('@Benevole/Default/index.html.twig');
         }
         else if ($authChecker->isGranted('ROLE_ASSOCIATION')){
             return $this->render('@Association/Default/index.html.twig');

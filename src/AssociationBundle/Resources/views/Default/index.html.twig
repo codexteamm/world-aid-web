@@ -1,15 +1,16 @@
 {% extends "::base2.html.twig" %}
               {% block header %}
                   <li><a href="#">About</a></li>
-                  <li><a href="#">Pages</a>
+                  <li><a href="#">camps</a>
                       <ul class="sub-menu">
-                          <li><a href="category.html">Category</a></li>
-                          <li><a href="playlist.html">aaaaaaaa</a></li>
+
+                          <li><a href="{{ path('recherche')}}">show all camps</a></li>
+                          <li><a href="{{ path('show_mine')}}">supported camps</a></li>
+                          <li><a href="{{ path('create')}}">create camps</a></li>
 
                       </ul>
                   </li>
-                  <li><a href="blog.html">qqqqq</a></li>
-                  <li><a href="contact.html">Contact</a></li>
+                  <li><a href="{{ path('contact')}}">Contact</a></li>
               {% endblock header %}
 {% block title %}AppBundle:Security:add{% endblock %}
 

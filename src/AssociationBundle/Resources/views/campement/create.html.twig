@@ -1,12 +1,27 @@
-
-
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
 {% extends "AssociationBundle:Default:index.html.twig" %}
 
 
 {% block body %}
+    <div class="wrapper1">
+        <div class="row" style="height:550px;">
 
-        {{ form(form) }}
-        <div id="map"style="position: relative;height: 400px;width: 500px;"></div>
+
+            <div class="col-md-6 maps">
+                <div id="map" style="position: relative;height: 400px;width: 350px;"></div>
+            </div>
+            <div class="col-md-6 maps">
+                {{ form(form) }}
+
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+{% block supscirpt %}
+<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<script src="{{ asset('js/sofien.js') }}"/></script>
 {% endblock %}
 
 
