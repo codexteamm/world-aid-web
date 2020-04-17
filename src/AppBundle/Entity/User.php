@@ -15,6 +15,17 @@ use FOS\UserBundle\Model\User as BaseUser;
 class User extends BaseUser
 {
     /**
+     * @ORM\Column(name="facebook_id",type="string", length=255, nullable=true)
+     */
+    protected $facebook_id;
+
+    /**
+     * @ORM\Column(name="facebook_access_token",type="string", length=255, nullable=true)
+     */
+    protected $facebook_access_token;
+
+
+    /**
      * @var string
      *
      * @ORM\Column(name="mdp", type="string", length=30, nullable=true)

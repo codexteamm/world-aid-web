@@ -16,7 +16,9 @@ class RechercheType extends AbstractType
     {
         $builder->add('nom')
             ->add('paye')
-            ->add ('chercher',SubmitType::class);
+            ->add ('chercher',SubmitType::class ,[
+            'attr' => ['class' => 'btn btn-outline-success'],
+]);
 
     }/**
  * {@inheritdoc}

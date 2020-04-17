@@ -39,6 +39,10 @@
     <div class="container-fluid">
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
 <h3 class="font-green">Register Form</h3>
+       
+            {{ form_row(form.roles) }}
+
+
 <div class="form-group">
     {{ form_widget(form.username, { 'attr': {'class': 'form-control placeholder-no-fix', 'placeholder':'User Name'} }) }}
     {% for errorItem in form.username.vars.errors %}

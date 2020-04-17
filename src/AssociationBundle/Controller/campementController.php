@@ -59,7 +59,7 @@ class campementController extends Controller
             6/*nbre d'éléments par page*/
         );
 
-        return $this->render('@Association/campement/show_all.html.twig', array("listecamp" => $camps,"user"=>$user ));
+        return $this->render('@Association/campement/recherche.html.twig', array("listecamp" => $camps,"user"=>$user ));
     }
     public function contactAction(Request $request)
     {
@@ -102,7 +102,7 @@ class campementController extends Controller
         //var_dump($club);
         $em->remove($club);
         $em->flush();
-        return $this->redirectToRoute('show_all');
+        return $this->redirectToRoute('recherche');
     }
 
     public function takeChargeAction($id)
@@ -120,7 +120,7 @@ class campementController extends Controller
             // make more modifications to the database
 
             $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('show_all');
+            return $this->redirectToRoute('recherche');
 
 
 
@@ -140,7 +140,7 @@ class campementController extends Controller
         // make more modifications to the database
 
         $this->getDoctrine()->getManager()->flush();
-        return $this->redirectToRoute('show_all');
+        return $this->redirectToRoute('recherche');
 
 
 
@@ -181,16 +181,20 @@ class campementController extends Controller
 
             $campement ->setNom($request->get('nom'));
             $campement ->setDescription($request->get('description'));
-            /*$campement ->setPaye($request->get('paye'));
-            $campement ->setLongitude($request->get('longitude'));
-            $campement ->setLatitude($request->get('latitude'));*/
+
+
 
 
             //fresh the data base
             $em->flush();
             //Redirect to the read
-            return $this->redirectToRoute('show_all');
+            return $this->redirectToRoute('recherche');
         }
+        //second step:
+        // send the view to the user
+        return $this->render('@Association/campement/edit.html.twig', array(
+            'campement' => $campement));
+    }
         //second step:        $em=$this->getDoctrine()->getManager();
         //        $campement = $em->getRepository(Campement::class)->find($id);
         //        $user = $this->container->get('security.token_storage')->getToken()->getUser();
@@ -213,9 +217,6 @@ class campementController extends Controller
         //            //Redirect to the read
         //            return $this->redirectToRoute('show_all');
         // send the view to the user
-        return $this->render('@Association/campement/edit.html.twig', array(
-            'campement' => $campement));
-    }
 
 
     public function createAction(Request $request)
@@ -243,7 +244,7 @@ class campementController extends Controller
             //update the data base with flush
             $em->flush();
             //redirect the route after the add
-            return $this->redirectToRoute('show_all');
+            return $this->redirectToRoute('recherche');
         }
 
         return $this->render('AssociationBundle:campement:create.html.twig', array(

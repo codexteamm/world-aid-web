@@ -28,31 +28,46 @@
 
             <div class="col-md-6 maps">
                 <div id="map" style="position: relative;height: 400px;width: 350px;"></div>
+                {% if campement.idassociation is empty  %}
+                <p>if you fin this capms useless and you want to delete ckick <a
+                            href="{{ path('delete',{'id':campement.id}) }}">here</a>
+                </p>
+                {% endif %}
+
             </div>
             <div class="col-md-6 maps">
-                <div class="form-group">
-                    <label for="nom">nom</label>
-                    <input type="text" class="form-control" id="nom"  name="nom" value="{{campement.nom}}" >
+                <form method="POST">
+                    <div class="form-group">
+                        <label for="nom">nom</label>
+                        <input type="text" class="form-control" id="nom" name="nom" value="{{ campement.nom }}">
 
-                </div>
-                <div class="form-group">
-                    <label for="description">description</label>
-                    <textarea  type="text" class="form-control"  id="description" name="description" value="{{ campement.description }}" rows="3" ></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">description</label>
+                        <textarea type="text" class="form-control" id="description" name="description"
+                                  rows="3">{{ campement.description }}</textarea>
 
-                </div>
+                    </div>
 
 
-             {#
-                Nom: <input type="text" class="form-control"   name="description" value="{{ campement.longitude }}">
-                <br/>
+                    <input class="site-btn" type="submit" style="margin-left: 60px "/>
 
-                description: <input type="text" name="description" value="{{ campement.description }}"><br/>
-                paye: <input type="text" name="paye" value="{{ campement.paye }}"><br/>
-                longitude: <input type="text" name="longitude" value="{{ campement.longitude }}">
-                longitude: <input type="text" name="latitude" value="{{ campement.latitude }}">#}
-                {# form(form) }}#}
+                </form>
+                <HR style="margin: 50px">
+                {% if campement.idassociation is not empty  %}
 
+                <p> this camp is supported by</p>
+                <ul class="list-group">
+                    {% for camp in campement.idassociation %}
+                        <li class="list-group-item">{{ camp }}</li>
+                    {% endfor %}
+
+
+                </ul>
+
+                {% endif %}
             </div>
+
 
         </div>
     </div>
@@ -60,21 +75,21 @@
 {% endblock %}
 {% block supscirpt %}
 
-<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-<script >
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script>
 
-    var map = L.map('map').setView([51.505, -0.09], 7);
+        var map = L.map('map').setView([51.505, -0.09], 7);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
 
-    L.marker([{{ campement.latitude }},{{ campement.longitude }}]).addTo(map)
+        L.marker([{{ campement.latitude }},{{ campement.longitude }}]).addTo(map);
 
 
-    map.panTo([{{ campement.latitude }},{{ campement.longitude }}])
+        map.panTo([{{ campement.latitude }},{{ campement.longitude }}])
 
-</script>
+    </script>
 {% endblock %}
 
 

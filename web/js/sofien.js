@@ -39,3 +39,16 @@ function updateLatLng(lat,lng,reverse) {
         map.panTo([lat,lng]);
     }
 }
+map.on('click', function(e){
+    $.ajax({ url:'http://api.geonames.org/countryCodeJSON?lat='+e.latlng.lat+'&lng='+e.latlng.lng+'&username=sofien',
+        success: function(data){
+           // var state = data.results[0].address_components[5].long_name;
+            //            // var country = data.results[0].address_components[6].long_name;
+            //             //var zip = data.results[0].address_components[7].long_name;
+            //            // $('.leaflet-popup-content').text(country+' '+zip);
+            console.log(data["countryName"]);
+            document.getElementById('appbundle_campement_paye').value=data["countryName"];
+        }
+    });
+   // popup.setLatLng(e.latlng).setContent('').openOn(map);
+});

@@ -4,6 +4,7 @@ namespace AssociationBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -21,7 +22,7 @@ class CampementType extends AbstractType
             ->add('description',TextareaType::class, [
                 'attr' => ['rows'=>'5'],
                 ])
-            ->add('paye')
+            ->add('paye',TextType::class)
             ->add('longitude',HiddenType::class)
             ->add('latitude',HiddenType::class)
             ->add('save', SubmitType::class, ['label' => 'Create ']);
