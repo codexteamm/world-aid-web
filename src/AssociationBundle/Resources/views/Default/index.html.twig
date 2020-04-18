@@ -4,16 +4,259 @@
                   <li><a href="#">camps</a>
                       <ul class="sub-menu">
 
-                          <li><a href="{{ path('recherche')}}">show all camps</a></li>
-                          <li><a href="{{ path('show_mine')}}">supported camps</a></li>
-
-
+                          <li><a href="{{ path('recherche') }}">show all camps</a></li>
+                          <li><a href="{{ path('show_mine') }}">supported camps</a></li>
                       </ul>
                   </li>
-                  <li><a href="{{ path('contact')}}">Contact</a></li>
+                  <li><a href="#">events</a>
+                      <ul class="sub-menu">
+                          <li><a href="{{ path('new') }}">Add An Event</a></li>
+                          <li><a href="{{ path('show') }}">Show all events</a>
+                          <li><a href="{{ path('show_My') }}">Show my events</a></li>
+                      </ul>
+                  </li>
+                  <li><a href="{{ path('contact') }}">Contact</a></li>
               {% endblock header %}
 {% block title %}AppBundle:Security:add{% endblock %}
 
 {% block body %}
-    <h1>Welcome to Association Home </h1>
+    <section class="hero-section">
+        <div class="hero-slider owl-carousel">
+            <div class="hs-item" style="background-image: url({{ asset('img/Capture1.PNG') }});">
+                <div class="container"  >
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="hs-text">
+                                <h2><span> WORLD AID</span> for everyone.</h2>
+                                <p>The best way to not feel hopeless is to get up and do something. Don’t wait for good things to happen to you. If you go out and make some good things happen, you will fill the world with hope, you will fill yourself with hope. </p>
+                                <a href="#" class="site-btn">Mobile App</a>
+                                <a href="#" class="site-btn sb-c2">Desktop App</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="hr-img">
+                                {# <img src="{{ asset('img/hero-bg.png') }}" alt=""/>
+ #}s
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hs-item">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="hs-text">
+                                <h2><span>Together  </span> make the world better.</h2>
+                                <p>The best antidote I know for worry is work. The best cure for weariness is the challenge of helping someone who is even more tired. One of the great ironies of life is this: He or she who serves almost always benefits more than he or she who is served. </p>
+                                <a href="#" class="site-btn">Mobile App</a>
+                                <a href="#" class="site-btn sb-c2">Desktop App</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="hr-img">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero section end -->
+
+    <!-- Intro section -->
+    <section class="intro-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="section-title">
+                        <h2>Welcome to Association Home</h2>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h1 align="center"> </h1>
+
+                    <h2 align="center">Ask Leyla :</h2>
+                    <div  class ="wrapper1" id="main" style="padding-left: 200px">
+                        <h3>user: <span id="user"></span></h3>
+                        <h3>chatbot: <span id="chatbot"></span></h3>
+                        <div><input id="input" type="text" placeholder="say anything..." autocomplete="off"/></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Intro section end -->
+
+
+    <!-- How section -->
+    <section class="how-section spad set-bg" id="#section2"  >
+
+        <div class="section-title" id="#section2">
+            <h2>How it works</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="how-item">
+                    <div class="hi-icon">
+                        <img src="{{ asset('img/association.png') }}" alt=""/>
+                    </div>
+                    <h4>Create an account</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipi-scing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida. </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="how-item">
+                    <div class="hi-icon">
+                        <img src="{{ asset('img/needy.png') }}" alt=""/>
+
+
+                    </div>
+                    <h4>Choose a plan</h4>
+                    <p>Donec in sodales dui, a blandit nunc. Pellen-tesque id eros venenatis, sollicitudin neque sodales, vehicula nibh. Nam massa odio, portti-tor vitae efficitur non. </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="how-item">
+                    <div class="hi-icon">
+
+                        <img src="{{ asset('img/donor.png') }}" alt=""/>
+
+
+                    </div>
+                    <h4>Download Music</h4>
+                    <p>Ablandit nunc. Pellentesque id eros venenatis, sollicitudin neque sodales, vehicula nibh. Nam massa odio, porttitor vitae efficitur non, ultric-ies volutpat tellus. </p>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- How section end -->
+
+    <!-- Concept section -->
+    <section class="concept-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="section-title">
+                        <h2>Our Concept</h2>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="concept-item">
+                        <img src="{{ asset('img/1.jpg') }}" alt=""/>
+
+
+                        <h5>homeless</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="concept-item">
+                        <img src="{{ asset('img/2.jpg') }}" alt=""/>
+                        <h5>Association events</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="concept-item">
+                        <img src="{{ asset('img/3.jpg') }}" alt=""/>
+                        <h5>refugees</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="concept-item">
+                        <img src="{{ asset('img/4.jpeg') }}" alt=""/>
+                        <h5>Camps</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script type="text/javascript">
+        var trigger = [
+            ["hi","hey","hello"],
+            ["how are you", "how is life", "how are things"],
+            ["how to add an event"],
+            ["how to show my event"],
+            ["how to show all event"],
+            ["who made you"],
+            ["your name please",  "your name", "may i know your name", "what is your name"],
+            ["i love you"],
+            ["happy", "good"],
+            ["bad", "bored", "tired"],
+            ["help me", "tell me story", "tell me joke"],
+            ["ah", "yes", "ok", "okay", "nice", "thanks", "thank you"],
+            ["bye", "good bye", "goodbye", "see you later"]
+        ];
+        var reply = [
+            ["Hi","Hey","Hello"],
+            ["Fine", "Pretty well", "Fantastic"],
+            ["click in the menu add an event"],
+            ["Click on show my event in the menu"],
+            ["Click on add an event in the menu"],
+            ["click on show all events in the menu"],
+            ["I am nameless", "I don't have a name"],
+            ["I love you too", "Me too"],
+            ["Have you ever felt bad?", "Glad to hear it"],
+            ["Why?", "Why? You shouldn't!", "Try watching TV"],
+            ["I will", "What about?"],
+            ["Tell me a story", "Tell me a joke", "Tell me about yourself", "You are welcome"],
+            ["Bye", "Goodbye", "See you later"]
+        ];
+        var alternative = ["Haha...", "Eh..."];
+        document.querySelector("#input").addEventListener("keypress", function(e){
+            var key = e.which || e.keyCode;
+            if(key === 13){ //Enter button
+                var input = document.getElementById("input").value;
+                document.getElementById("user").innerHTML = input;
+                output(input);
+            }
+        });
+        function output(input){
+            try{
+                var product = input + "=" + eval(input);
+            } catch(e){
+                var text = (input.toLowerCase()).replace(/[^\w\s\d]/gi, ""); //remove all chars except words, space and
+                text = text.replace(/ a /g, " ").replace(/i feel /g, "").replace(/whats/g, "what is").replace(/please /g, "").replace(/ please/g, "");
+                if(compare(trigger, reply, text)){
+                    var product = compare(trigger, reply, text);
+                } else {
+                    var product = alternative[Math.floor(Math.random()*alternative.length)];
+                }
+            }
+            document.getElementById("chatbot").innerHTML = product;
+            speak(product);
+            document.getElementById("input").value = ""; //clear input value
+        }
+        function compare(arr, array, string){
+            var item;
+            for(var x=0; x<arr.length; x++){
+                for(var y=0; y<array.length; y++){
+                    if(arr[x][y] == string){
+                        items = array[x];
+                        item =  items[Math.floor(Math.random()*items.length)];
+                    }
+                }
+            }
+            return item;
+        }
+        function speak(string){
+            var utterance = new SpeechSynthesisUtterance();
+            utterance.voice = speechSynthesis.getVoices().filter(function(voice){return voice.name == "Agnes";})[0];
+            utterance.text = string;
+            utterance.lang = "en-US";
+            utterance.volume = 1; //0-1 interval
+            utterance.rate = 1;
+            utterance.pitch = 2; //0-2 interval
+            speechSynthesis.speak(utterance);
+        }
+    </script>
 {% endblock %}

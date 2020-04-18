@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -35,7 +36,7 @@ class UserType extends AbstractType
 
             ->add('prenom')
             ->add('pays')
-            ->add('datenaissance')
+            ->add('datenaissance',DateType::class,array("widget"=>"single_text","format"=>"yyyy-MM-dd"))
             ->add('descriptioncassocial')
             ->add('nomassociaiton')
             ->add('rib')

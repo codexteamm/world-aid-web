@@ -72,6 +72,120 @@ class DonMateriel
      */
     private $idEvenement;
 
+    /**
+     * @return \DateTime
+     */
+    public function getDateDon()
+    {
+        return $this->dateDon;
+    }
+
+    /**
+     * @param \DateTime $dateDon
+     */
+    public function setDateDon($dateDon)
+    {
+        $this->dateDon = $dateDon;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTypeMateriel()
+    {
+        return $this->typeMateriel;
+    }
+
+    /**
+     * @param string $typeMateriel
+     */
+    public function setTypeMateriel($typeMateriel)
+    {
+        $this->typeMateriel = $typeMateriel;
+    }
+
+    /**
+     * @return float
+     */
+    public function getQuantite()
+    {
+        return $this->quantite;
+    }
+
+    /**
+     * @param float $quantite
+     */
+    public function setQuantite($quantite)
+    {
+        $this->quantite = $quantite;
+    }
+
+    /**
+     * @return int
+     */
+    public function getReference()
+    {
+        return $this->reference;
+    }
+
+    /**
+     * @param int $reference
+     */
+    public function setReference($reference)
+    {
+        $this->reference = $reference;
+    }
+
+    /**
+     * @return User
+     */
+    public function getIdAssociation()
+    {
+        return $this->idAssociation;
+    }
+
+    /**
+     * @param User $idAssociation
+     */
+    public function setIdAssociation($idAssociation)
+    {
+        $this->idAssociation = $idAssociation;
+    }
+
+    /**
+     * @return User
+     */
+    public function getIdBenevole()
+    {
+        return $this->idBenevole;
+    }
+
+    /**
+     * @param User $idBenevole
+     */
+    public function setIdBenevole($idBenevole)
+    {
+        $this->idBenevole = $idBenevole;
+    }
+
+    /**
+     * @return Evenement
+     */
+    public function getIdEvenement()
+    {
+        return $this->idEvenement;
+    }
+
+    /**
+     * @param Evenement $idEvenement
+     */
+    public function setIdEvenement($idEvenement)
+    {
+        $this->idEvenement = $idEvenement;
+    }
+
+
+
 
 }
 

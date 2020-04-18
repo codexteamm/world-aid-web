@@ -1,0 +1,52 @@
+{% extends "AssociationBundle:Default:index.html.twig" %}
+
+{% block body %}
+
+    <h1 align="center">Show Benevole Of My Event </h1>
+    <table id="example" class="table table-striped table-bordered" style="width:100%" >
+        <thead>
+        <tr>
+            <th>Nom </th>
+            <th>Prénom</th>
+            <th>Pays</th>
+            <th>Mail</th>
+            <th>Action</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for listeben in listeben %}
+            <tr>
+                <td>
+                    {{ listeben.nom }}
+                </td>
+                <td>
+                    {{ listeben.prenom }}
+                </td>
+                <td>
+                    {{ listeben.pays}}
+                </td>
+
+                <td>
+                    {{ listeben.mail}}
+                </td>
+                <td><a href="{{ path('mail') }}" >Confirm mail</a></td>
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+    <input type = "button" value = "Retour"  class="btn btn-primary btn-sm"  onclick = "history.back()" align="center">
+
+{% endblock %}
+
+
+{% block tableauscript %}
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script> $(document).ready(function() {
+            $('#example').DataTable();
+        } );</script>
+{% endblock %}

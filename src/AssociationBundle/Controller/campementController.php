@@ -192,7 +192,7 @@ class campementController extends Controller
         }
         //second step:
         // send the view to the user
-        return $this->render('@Association/campement/edit.html.twig', array(
+        return $this->render('@Association/campement/editevent.html.twig', array(
             'campement' => $campement));
     }
         //second step:        $em=$this->getDoctrine()->getManager();

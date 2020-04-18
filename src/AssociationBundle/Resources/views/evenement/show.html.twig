@@ -1,0 +1,136 @@
+{% extends "AssociationBundle:Default:index.html.twig" %}
+
+{% block title %}AssociationBundle:evenement:show{% endblock %}
+{% block body %}
+    <h1 align="center">Show All Events</h1>
+            <div class="row" style="padding-bottom: 200px;padding-top:50px;">
+            <div class="col-md-7" style="margin-left:20px;">
+    <table id="example" class="table table-striped table-bordered" style="width:100%">
+    <thead>
+    <tr>
+        <th class="cell100 column1">Nom Evenement</th>
+        <th class="cell100 column1">Date Debut Evenement</th>
+        <th class="cell100 column1">Date Fin Evenement</th>
+        <th class="cell100 column1">Description</th>
+        <th class="cell100 column1">Categorie</th>
+        <th class="cell100 column1">Action</th>
+        <th class="cell100 column1">Action</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for listeevent in listeevent %}
+        <tr>
+            <td>
+                {{ listeevent.nomEvent }}
+            </td>
+            <td>
+                {{ listeevent.dateDebutEvent|date('d-m-Y H:i:s') }}
+            </td>
+            <td>
+                {{ listeevent.dateFinEvent|date('d-m-Y H:i:s') }}
+            </td>
+            <td>
+                {{ listeevent.description }}
+            </td>
+            <td>
+                {{ listeevent.categorie}}
+            </td>
+            <td><a type="button" class="btn btn-primary btn-sm"  href="{{  path('feedBack',{'id':listeevent.idEvent}) }}" >Show feed back</a></td>
+            <td><a type="button"  class="btn btn-primary btn-sm"  onclick="addpopup({{ listeevent.longitude }},{{ listeevent.latitude }},'{{ listeevent.description }}')" >
+                    See Location
+                </a></td>
+        </tr>
+
+    {% endfor %}
+
+    </tbody>
+</table>
+                <fieldset align="center"><a  type="button" class="btn btn-outline-info"  href="{{ path('pdf') }}" >Imprimer en PDF</a></fieldset>
+
+            </div>
+
+                <div class="col-md-4">
+
+                    <div id="map" style="position: relative;height: 500px;width: 400px; margin-left:120px;"></div>
+
+                </div>
+            </div>
+<br></br>
+{% endblock %}
+
+
+
+{% block bleauscript %}
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script> $(document).ready(function() {
+            $('#example').DataTable();
+        } );</script>
+{% endblock %}
+
+
+{% block addedscripts %}
+  {#  <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>#}
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script>
+
+
+        var map = L.map('map').setView([34, 9], 6);
+
+        L.tileLayer('http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png').addTo(map); //will be our basemap.
+        function addpopup(lan, lat, desc) {
+            console.log(lan, lat, desc)
+            L.popup({
+                autoClose: false,
+                closeOnEscapeKey: false,
+                closeOnClick: false,
+                closeButton: false,
+                className: 'marker',
+                maxWidth: 400
+
+            })
+                .setLatLng([lan, lat])
+                .setContent(desc)
+                .openOn(map);
+            map.panTo([lan,lat]);
+
+            /*  Array.from(Element.querySelectorAll(".abc")).forEach((item) => {
+                 console.log(item.dataset.lat, item.dataset.lng)
+
+                 item.addEventListener('click', function () {
+                     console.log(item.dataset.lat, item.dataset.lng)
+                     addpopup(item.dataset.lat, item.dataset.lng, item.dataset.desc) *
+
+
+                 })
+             }) */
+
+        }
+
+
+        /*
+        function onEachFeature(feature, layer) {
+            if (feature.properties) {
+                layer.bindPopup("<b>" + feature.properties.phase + "</b> from" + feature.properties.from + " to " + feature.properties.to);
+            }
+        }*/
+        //map.tap.disable();
+        /*
+        var streets = new L.geoJson(roads, {
+                onEachFeature: onEachFeature,
+                style: function(feature) { return {color: feature.properties.color}; }
+            }).addTo(map);
+
+            */
+    </script>
+{% endblock %}
+
+
+
+

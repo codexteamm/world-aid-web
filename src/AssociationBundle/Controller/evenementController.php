@@ -96,7 +96,7 @@ class evenementController extends Controller
         }
         //second step:
         // send the view to the user
-        return $this->render('@Association/evenement/edit.html.twig', array(
+        return $this->render('@Association/evenement/editevent.html.twig', array(
             'evenement' => $evenement));
     }
     public function deleteAction($id)

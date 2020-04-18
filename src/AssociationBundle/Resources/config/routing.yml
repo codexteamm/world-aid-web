@@ -1,39 +1,82 @@
 association_homepage:
-    path:     /
-    defaults: { _controller: AssociationBundle:Default:index }
+  path:     /
+  defaults: { _controller: AssociationBundle:Default:index }
 
 show_all:
-    path:     /showAll
-    defaults: { _controller: AssociationBundle:campement:showAll }
+  path:     /showAll
+  defaults: { _controller: AssociationBundle:campement:showAll }
 
 
 show_mine:
-    path:     /showMine
-    defaults: { _controller: AssociationBundle:campement:showMine }
+  path:     /showMine
+  defaults: { _controller: AssociationBundle:campement:showMine }
 
 edit:
-    path:     /edit/{id}
-    defaults: { _controller: AssociationBundle:campement:edit }
+  path:     /edit/{id}
+  defaults: { _controller: AssociationBundle:campement:edit }
 
 create:
-    path:     /create
-    defaults: { _controller: AssociationBundle:campement:create }
+  path:     /create
+  defaults: { _controller: AssociationBundle:campement:create }
 delete:
-    path:     /delete/{id}
-    defaults: { _controller: AssociationBundle:campement:delete }
+  path:     /delete/{id}
+  defaults: { _controller: AssociationBundle:campement:delete }
 takeCharge:
-    path:     /takeCharge/{id}
-    defaults: { _controller: AssociationBundle:campement:takeCharge }
+  path:     /takeCharge/{id}
+  defaults: { _controller: AssociationBundle:campement:takeCharge }
 nontakeCharge:
-    path:     /nontakeCharge/{id}
-    defaults: { _controller: AssociationBundle:campement:nontakeCharge }
+  path:     /nontakeCharge/{id}
+  defaults: { _controller: AssociationBundle:campement:nontakeCharge }
 contact:
-    path:     /contact
-    defaults: { _controller: AssociationBundle:campement:contact }
+  path:     /contact
+  defaults: { _controller: AssociationBundle:campement:contact }
 ajax_search:
-    path:     /search
-    defaults: { _controller: AssociationBundle:campement:search }
+  path:     /search
+  defaults: { _controller: AssociationBundle:campement:search }
 
 recherche:
-    path:     /camps
-    defaults: { _controller: AssociationBundle:campement:recherche}
+  path:     /camps
+  defaults: { _controller: AssociationBundle:campement:recherche}
+
+new:
+  path:     /new
+  defaults: { _controller: AssociationBundle:evenement:new }
+
+deleteevent:
+  path:     /deleteevent/{id}
+  defaults: { _controller: AssociationBundle:evenement:delete }
+
+editevent:
+  path:     /editevent/{id}
+  defaults: { _controller: AssociationBundle:evenement:edit }
+
+show:
+  path:   /show
+  defaults: {_controller: AssociationBundle:evenement:show}
+
+show_My:
+  path:   /showMyEvent
+  defaults: {_controller: AssociationBundle:evenement:showMyEvent}
+
+benevole:
+  path: /benevole/{id}
+  defaults: {_controller: AssociationBundle:evenement:showBenevole}
+don:
+  path: /don/{id}
+  defaults: {_controller: AssociationBundle:evenement:showDon}
+
+deleteDon:
+  path:     /deleteDon/{id}
+  defaults: { _controller: AssociationBundle:evenement:deleteDon }
+
+pdf:
+  path:     /showPdf
+  defaults: { _controller: AssociationBundle:evenement:showPdf }
+
+mail:
+  path:     /sendMail
+  defaults: { _controller: AssociationBundle:evenement:sendMail }
+
+feedBack:
+  path:     /FeedBack/{id}
+  defaults: { _controller: AssociationBundle:evenement:FeedBack }

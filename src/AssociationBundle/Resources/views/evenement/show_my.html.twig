@@ -1,0 +1,128 @@
+{% extends "AssociationBundle:Default:index.html.twig" %}
+
+{% block title %}AssociationBundle:evenement:show{% endblock %}
+{% block body %}
+
+   {# <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>#}
+
+    <h1 align="center">Show My Events</h1>
+    <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+        <tr>
+            <th>Nom Evenement</th>
+            <th>Date Debut Evenement</th>
+            <th>Date Fin Evenement</th>
+           {# <th>Longitude</th>#}
+            {# <th>Latitude</th> #}
+            {#<th>Description</th>#}
+            <th>Categorie</th>
+            <th>Afficher les bénévoles</th>
+            <th>Afficher les dons</th>
+            <th>Edit Action</th>
+            <th>Delete Action</th>
+            <th>Map Action</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for listeevent in listeevent %}
+            <tr>
+                <td>
+                    {{ listeevent.nomEvent }}
+                </td>
+                <td>
+                    {{ listeevent.dateDebutEvent|date('d-m-Y H:i:s') }}
+                </td>
+                <td>
+                    {{ listeevent.dateFinEvent|date('d-m-Y H:i:s') }}
+                </td>
+
+                {#  <td>
+                     {{ listeevent.longitude}}
+                 </td>
+                 <td>
+                     {{ listeevent.latitude}}
+                 </td>
+                 <td>
+                     {{ listeevent.description }}
+                 </td>#}
+                 <td>
+                     {{ listeevent.categorie}}
+                 </td>
+                <td><a type="button" class="btn btn-outline-info"   href="{{ path('benevole',{'id':listeevent.idEvent}) }}">Show benevole</a></td>
+                <td><a type="button" class="btn btn-outline-info"   href="{{ path('don',{'id':listeevent.idEvent}) }}" >show Don</a></td>
+                <td><a type="button" class="btn btn-outline-info"   href="{{ path('editevent',{'id':listeevent.idEvent}) }}" >Edit</a></td>
+                <td><a type="button" class="btn btn-outline-info"   href="{{  path('deleteevent',{'id':listeevent.idEvent}) }}"    onclick="return confirm('are u sure?')">Supprimer</a></td>
+                <td><a type="button"  class="btn btn-outline-info"  onclick="addpopup({{ listeevent.longitude }},{{ listeevent.latitude }},'{{ listeevent.description }}')" >
+                        See Location
+                    </a></td></tr>
+{% endfor %}
+</tbody>
+</table>
+    <br>   <fieldset align="center"> See the event location   : </fieldset></br>
+    <div class="col-md-4">
+        <div class="wrapper" id="map" align="center" style="position: relative;height: 500px;width: 400px; margin-left:120px;"></div>
+    </div>
+{% endblock body%}
+
+{% block addedscripts %}
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+    <script>
+
+        var map = L.map('map').setView([34, 9], 6);
+
+        L.tileLayer('http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png').addTo(map); //will be our basemap.
+        function addpopup(lat, lan, desc) {
+            console.log(lat, lan, desc)
+            L.popup({
+                autoClose: false,
+                closeOnEscapeKey: false,
+                closeOnClick: false,
+                closeButton: false,
+                className: 'marker',
+                maxWidth: 400
+
+            })
+                .setLatLng([lat, lan])
+                .setContent(desc)
+                .openOn(map);
+            map.panTo([lat,lan]);
+
+            /*  Array.from(Element.querySelectorAll(".abc")).forEach((item) => {
+                 console.log(item.dataset.lat, item.dataset.lng)
+
+                 item.addEventListener('click', function () {
+                     console.log(item.dataset.lat, item.dataset.lng)
+                     addpopup(item.dataset.lat, item.dataset.lng, item.dataset.desc) *
+
+
+                 })
+             }) */
+
+        }
+
+
+        /*
+        function onEachFeature(feature, layer) {
+            if (feature.properties) {
+                layer.bindPopup("<b>" + feature.properties.phase + "</b> from" + feature.properties.from + " to " + feature.properties.to);
+            }
+        }*/
+        //map.tap.disable();
+        /*
+        var streets = new L.geoJson(roads, {
+                onEachFeature: onEachFeature,
+                style: function(feature) { return {color: feature.properties.color}; }
+            }).addTo(map);
+
+            */
+    </script>
+{% endblock %}

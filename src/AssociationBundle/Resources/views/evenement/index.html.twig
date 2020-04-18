@@ -1,0 +1,53 @@
+{% extends "AssociationBundle:Default:index.html.twig" %}
+
+{% block body %}
+    <h1>Evenements list</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Nomevent</th>
+            <th>Datedebutevent</th>
+            <th>Datefinevent</th>
+            <th>Longitude</th>
+            <th>Latitude</th>
+            <th>Description</th>
+            <th>Categorie</th>
+            <th>Creerle</th>
+            <th>Idevent</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for evenement in evenements %}
+            <tr>
+                <td><a href="{{ path('evenement_show', { 'idEvent': evenement.idEvent }) }}">{{ evenement.nomEvent }}</a></td>
+                <td>{% if evenement.dateDebutEvent %}{{ evenement.dateDebutEvent|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if evenement.dateFinEvent %}{{ evenement.dateFinEvent|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ evenement.longitude }}</td>
+                <td>{{ evenement.latitude }}</td>
+                <td>{{ evenement.description }}</td>
+                <td>{{ evenement.categorie }}</td>
+                <td>{% if evenement.creerLe %}{{ evenement.creerLe|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ evenement.idEvent }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('evenement_show', { 'idEvent': evenement.idEvent }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('evenement_edit', { 'idEvent': evenement.idEvent }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('evenement_new') }}">Create a new evenement</a>
+        </li>
+    </ul>
+{% endblock %}
