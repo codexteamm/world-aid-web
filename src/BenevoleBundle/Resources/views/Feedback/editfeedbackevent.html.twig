@@ -1,0 +1,26 @@
+{% extends "BenevoleBundle:Default:index.html.twig" %}
+{% block title %}Edit feedback{% endblock %}
+
+
+{% block body %}
+
+    <h3 style="padding-top:50px;">
+        <center>Edit my feedback</center>
+    </h3>
+    <hr/>
+    <br/>
+<div class="form-group">
+    <fieldset style="width: 50%; margin-left: 100px;">
+        <form method="POST">
+            Sujet: <input class="form-control" type="text" name="sujet" value="{{eventfeedback.sujet}}">
+            <br/>
+            Message: <textarea class="form-control" name="message" >{{ eventfeedback.message }}"</textarea><br/>
+            <br/>
+
+            <input type="submit" value="Save" class="btn btn-success">
+        <br />
+        </form>
+    </fieldset>
+</div>
+{% endblock %}
+

@@ -1,3 +1,45 @@
 benevole_homepage:
     path:     /
     defaults: { _controller: BenevoleBundle:Default:index }
+
+allevents:
+    path:     /events
+    defaults: { _controller: BenevoleBundle:Benevole:allEvents }
+
+myevents:
+    path:     /myevents
+    defaults: { _controller: BenevoleBundle:Benevole:benevoleEvents }
+
+se_benevoler:
+    path:     /volunteer/{id}
+    defaults: { _controller: BenevoleBundle:Benevole:volunteer }
+
+map:
+    path:     /map
+    defaults: { _controller: BenevoleBundle:Benevole:map }
+
+se_debenevoler:
+    path:     /unvolunteer/{id}
+    defaults: { _controller: BenevoleBundle:Benevole:unvolunteer }
+
+addfeedback:
+    path:     /{id}/addfeedback
+    defaults: { _controller: BenevoleBundle:Feedback:addfeedback }
+
+editfeedback:
+    path:    /editfeedback/{id}
+    defaults: { _controller: BenevoleBundle:Feedback:editfeedback }
+
+showfeedback:
+    path:    /{id}/showfeedback/
+    defaults: { _controller: BenevoleBundle:Feedback:showfeedback }
+
+deletefeedback:
+    path:    /deletefeedback/{id}
+    defaults: { _controller: BenevoleBundle:Feedback:deletefeedback }
+
+showevent:
+    path:    /showevent/{id}
+    defaults: { _controller: BenevoleBundle:Benevole:showevent }
+
+

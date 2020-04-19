@@ -1,0 +1,102 @@
+{% extends "BenevoleBundle:Default:index.html.twig" %}
+
+{% block title %}My Events{% endblock title %}
+
+{% block body %}
+    <h3 style="padding-top:50px;"><center>My Events</center></h3>
+    <hr/>
+    <br />
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+
+    <div class="row" style="padding-bottom: 200px;padding-top:50px;">
+        <div class="col-md-7" style="margin-left:20px;">
+            <table id="example" class="table table-striped table-bordered" style="width:100%;">
+                <thead>
+                <tr>
+                    <th class="cell100 column1">Name</th>
+                    <th class="cell100 column2">Start date</th>
+                    <th class="cell100 column3">End date</th>
+                    <th class="cell100 column4">Description</th>
+                    <th class="cell100 column5">Category</th>
+                    <th class="cell100 column6">Places</th>
+                    <th class="cell100 column7">Actions</th>
+
+
+
+                </tr>
+                </thead>
+
+                <tbody>
+                {%for event in listevents%}
+                    <tr>
+                        <td><a href="{{ path('showevent',{'id':event.idEvent}) }}"><div>{{ event.nomEvent }}</div> </a></td>
+                        <td>{{event.dateDebutEvent|date}}</td>
+                        <td>{{event.dateFinEvent|date}}</td>
+                        <td>{{event.description}}</td>
+                        <td>{{event.categorie}}</td>
+                        <td><a type="button"  class="btn btn-outline-success" id="abc" data-lng="{{ event.longitude }}" data-lat="{{ event.latitude }}"
+                               data-desc="{{ event.description }}" onclick="addpopup({{ event.longitude }},{{ event.latitude }},'{{ event.description }}')" >
+                                See Places
+                            </a></td>
+                        <td> <a type="button" class="btn btn-outline-danger"
+                                     href = "{{ path('se_debenevoler',{'id':event.idEvent}) }}" onclick="return confirm('Are u sure?')">
+                                unvolunteer
+                            </a></td>
+                    </tr>
+
+                {% endfor %}
+
+
+            </table>
+        </div>
+        <div class="col-md-4">
+
+
+
+            <div id="map" style="position: relative;height: 500px;width: 400px; margin-left:80px;"></div>
+
+            <script>
+
+                var map = L.map('map').setView([34,9], 6);
+                L.tileLayer('http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png').addTo(map); //will be our basemap.
+                function addpopup(lan,lat,desc){
+                    var popup = L.popup()
+                        .setLatLng([lan, lat])
+                        .setContent(desc)
+                        .openOn(map);
+
+                }
+
+
+                /*
+                function onEachFeature(feature, layer) {
+                    if (feature.properties) {
+                        layer.bindPopup("<b>" + feature.properties.phase + "</b> from" + feature.properties.from + " to " + feature.properties.to);
+                    }
+                }*/
+                //map.tap.disable();
+                /*
+                var streets = new L.geoJson(roads, {
+                        onEachFeature: onEachFeature,
+                        style: function(feature) { return {color: feature.properties.color}; }
+                    }).addTo(map);
+
+                    */
+            </script>
+
+        </div >
+
+    </div>
+
+{% endblock body %}
+{% block addedscripts %}
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
+    </script>
+{% endblock %}
+
+

@@ -296,12 +296,34 @@ class Evenement
     }
 
     /**
+     * @ORM\OneToMany(targetEntity="BenevoleBundle\Entity\Eventfeedback", mappedBy="idevenement")
+     */
+    private $eventfeedback;
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getEventfeedback()
+    {
+        return $this->eventfeedback;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\ArrayCollection $eventfeedback
+     */
+    public function setEventfeedback($eventfeedback)
+    {
+        $this->eventfeedback = $eventfeedback;
+    }
+
+    /**
      * Constructor
      */
 
     public function __construct()
     {
         $this->idbenevole = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->eventfeedback = new \Doctrine\Common\Collections\ArrayCollection();
         $this->creerLe = new \DateTime('now');
     }
 

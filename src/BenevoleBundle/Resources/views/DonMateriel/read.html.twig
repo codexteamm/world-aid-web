@@ -1,0 +1,91 @@
+{% extends "BenevoleBundle:Default:index.html.twig" %}
+
+
+{% block body %}
+    <center xmlns="http://www.w3.org/1999/html"><h1>Donations list</h1></center>
+
+    <table id="example" class="table table-hover table-bordered" style="width:100%">
+
+        <thead>
+    <tr>
+        <th scope="col2">Donated Materials</th>
+        <th scope="col3">Quantity</th>
+        <th scope="col4">Date of donation</th>
+        <th scope="col5">Action</th>
+        <th scope="col6">Action</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for donsMateriels in donsMateriels %}
+     <tr>
+            <td> {{ donsMateriels.typeMateriel }}</td>
+            <td> {{ donsMateriels.quantite }}</td>
+            <td>{{ donsMateriels.dateDon|date('d/m/Y') }}</td>
+            <td><a type="button" class="btn btn-danger btn-sm"  href="{{ path('deletedon',{'id':donsMateriels.reference}) }}"  onclick="return confirm('Do you really want to delete this donation?')">Delete</a></td>
+            <td> <a class="btn btn-success btn-sm {{ donsMateriels.reference }}" data-toggle="modal" data-target="#dataModal{{ donsMateriels.reference }}" href="{{ path('updatedon',{'id':donsMateriels.reference}) }}" id="{{ donsMateriels.reference }}">
+                    <i class="material-icons">Edit</i>
+                </a>
+
+
+
+
+                <!-- dataModal -->
+
+                <div id="dataModal{{ donsMateriels.reference }}" tabindex="-1" role="dialog"     class="modal fade">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Edit your donation</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span area>
+                                <h4 class="modal-title" id="modal-title{{ donsMateriels.reference }}"></h4>
+                            </div>
+                            <div class="modal-body" id="modal_detail{{ donsMateriels.reference }}">
+                                    <form action="{{ path('updatedon',{'id':donsMateriels.reference}) }}"  method="POST"  style="margin: 10px">
+                                        <div class="form-group">
+                                             <label for="Material Type">Material Type</label>
+                                        <input class="form-control" name="typeMaterial" type="text" placeholder="Material Type" value="{{ donsMateriels.typeMateriel}}" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="formGroupExampleInput">Donation's quantity</label>
+                                            <input class="form-control" name="quantite" type="number" placeholder="Quantity" value="{{ donsMateriels.quantite }}"   />
+                                        </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button class="btn btn-success" onclick="return confirm('Do you really want to edit this donation?')">Save</button>
+                                </a>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </td>
+     </tr>
+    </tbody>
+
+
+
+    {% endfor %}
+
+    </table>
+    <center><a href="{{ path('pdf') }}">Export to PDF</a></center>
+{% endblock %}
+
+
+{% block script %}
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+
+{% endblock %}
+
+
+
+

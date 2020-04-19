@@ -1,0 +1,161 @@
+{% extends "BenevoleBundle:Default:index.html.twig" %}
+
+
+{% block title %}Events{% endblock title %}
+
+{% block body %}
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+    <div class="container">
+
+
+        <div class="jumbotron">
+            <h1 class="display-3">{{ event.nomEvent }}</h1>
+            <p class="lead">{{ event.description }}</p>
+            {% if event not in user.idevenement %}
+
+                <a type="button" class="btn btn-outline-success"
+                       href = "{{ path('se_benevoler',{'id':event.idEvent}) }}" onclick="return confirm('Are you sure?')">
+                        Volunteer
+                    </a>
+            {% endif %}
+            {% if event  in user.idevenement %}
+
+               <a type="button" class="btn btn-outline-danger"
+                       href = "{{ path('se_debenevoler',{'id':event.idEvent}) }}" onclick="return confirm('Are you sure?')">
+                        Unvolunteer
+                    </a>
+
+            {% endif %}
+
+            <a type="button" class="btn btn-outline-info"
+               href = "{{ path('showfeedback',{'id':event.idEvent}) }}">
+                FeedBack
+            </a>
+            <a type="button" class="btn btn-outline-info"
+               href = "{{ path('creer',{'id':event.idEvent}) }}">
+                Donate Materials
+            </a>
+
+            <a type="button" class="btn btn-outline-info"
+               href = "{{ path('showDonationByEvent',{'id':event.idEvent}) }}">
+                View your donations
+            </a>
+
+
+            <a type="button" class="btn btn-outline-info"
+                href = "{{ path('addArticle',{'id':event.idEvent}) }}">
+                Talk About This Event
+            </a>
+
+            <a type="button" class="btn btn-outline-info"
+               href = "{{ path('readArticleByIdEvent',{'id':event.idEvent}) }}">
+                My Articles About This Event
+            </a>
+
+
+
+
+
+        </div>
+
+        <div class="row marketing" style ="padding-bottom: 100px;padding-top:50px;">
+            <div class="col-lg-6">
+                <h4>Start date</h4>
+                <p>{{ event.dateDebutEvent|date }}</p>
+
+                <h4>Category</h4>
+                <p> {{ event.categorie }} </p>
+
+                    <h4>  <a type="button" id="place"  class="btn btn-outline-info "  onclick="addpopup({{ event.longitude }},{{ event.latitude }},'{{ event.description }}')" >
+                    See Places
+                </a> </h4>
+
+
+
+
+                <br />
+            </div>
+
+            <div class="col-lg-6">
+                <h4>End  date</h4>
+                <p>{{ event.dateDebutEvent|date }}</p>
+
+                <h4>Created at </h4>
+                <p>{{ event.creerle|date }}</p>
+
+
+            </div>
+
+
+
+            <br />
+
+            <div id="map" style="position: relative;height: 500px;width: 800px;"></div>
+        </div>
+
+
+
+    </div> <!-- /container -->
+
+{% endblock %}
+
+{% block addedscripts %}
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
+    <script>
+
+        var map = L.map('map').setView([34, 9], 6);
+
+        L.tileLayer('http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png').addTo(map); //will be our basemap.
+        function addpopup(lat, lan, desc) {
+            console.log(lat, lan, desc)
+            L.popup({
+                autoClose: false,
+                closeOnEscapeKey: false,
+                closeOnClick: false,
+                closeButton: false,
+                className: 'marker',
+                maxWidth: 400
+
+            })
+                .setLatLng([lat, lan])
+                .setContent(desc)
+                .openOn(map);
+            map.panTo([lat,lan]);
+
+            /*  Array.from(Element.querySelectorAll(".abc")).forEach((item) => {
+                 console.log(item.dataset.lat, item.dataset.lng)
+
+                 item.addEventListener('click', function () {
+                     console.log(item.dataset.lat, item.dataset.lng)
+                     addpopup(item.dataset.lat, item.dataset.lng, item.dataset.desc) *
+
+
+                 })
+             }) */
+
+        }
+
+
+        /*
+        function onEachFeature(feature, layer) {
+            if (feature.properties) {
+                layer.bindPopup("<b>" + feature.properties.phase + "</b> from" + feature.properties.from + " to " + feature.properties.to);
+            }
+        }*/
+        //map.tap.disable();
+        /*
+        var streets = new L.geoJson(roads, {
+                onEachFeature: onEachFeature,
+                style: function(feature) { return {color: feature.properties.color}; }
+            }).addTo(map);
+
+            */
+    </script>
+
+{% endblock %}

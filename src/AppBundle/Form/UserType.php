@@ -36,7 +36,7 @@ class UserType extends AbstractType
 
             ->add('prenom')
             ->add('pays')
-            ->add('datenaissance',DateType::class,array("widget"=>"single_text","format"=>"yyyy-MM-dd"))
+            ->add('datenaissance',DateType::class,array("widget"=>"single_text","format"=>"yyyy-MM-dd" ,'required' => false ))
             ->add('descriptioncassocial')
             ->add('nomassociaiton')
             ->add('rib')

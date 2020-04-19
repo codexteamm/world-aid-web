@@ -1,0 +1,11 @@
+<h3>You did it! You donated!</h3>
+
+Hi {{ app.user.nom }}! You've successfully donated.
+
+{# example, assuming you have a route named "login" #}
+To view your donation, go to: <a href="{{ url('read') }}">View Donations</a>.
+
+Thanks!
+
+{# Makes an absolute URL to the /images/logo.png file #}
+<img src="{{ absolute_url(asset('images/logo.png')) }}">

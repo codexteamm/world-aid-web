@@ -496,5 +496,26 @@ class User extends BaseUser
         $this->idcampement = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    public function addevent(Evenement $event)
+    {
+        if ($this->idevenement->contains($event)) {
+            echo "you are already volunteered";
+            return;
+        }
+
+        $this->idevenement[] = $event;
+
+        return $this;
+    }
+
+    public function removeevent(Evenement $event)
+    {
+        if ($this->idevenement->contains($event)) {
+            $this->idevenement->removeElement($event);
+        }
+
+
+    }
+
 }
 

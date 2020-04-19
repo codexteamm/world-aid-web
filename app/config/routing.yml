@@ -43,3 +43,60 @@ easy_admin_bundle:
     resource: "@EasyAdminBundle/Controller/AdminController.php"
     type:     annotation
     prefix:   /dashboard
+
+creer:
+    path:     /{id}/create
+    defaults: { _controller: BenevoleBundle:DonMaterielController:add}
+
+lire:
+    path:     /readdon
+    defaults: { _controller: BenevoleBundle:DonMaterielController:read}
+
+deletedon:
+    path:     /deletedon/{id}
+    defaults: { _controller: BenevoleBundle:DonMaterielController:delete}
+
+updatedon:
+    path:     /updatedon/{id}
+    defaults: { _controller: BenevoleBundle:DonMaterielController:update}
+
+pdf:
+    path:     /pdf
+    defaults: { _controller: BenevoleBundle:DonMaterielController:pdf}
+
+checkout:
+    path:    /checkout
+    defaults: { _controller: BenevoleBundle:DonMaterielController:checkout}
+
+prepare:
+    path:    /prepare
+    defaults: { _controller: BenevoleBundle:DonMaterielController:prepare}
+
+
+addArticle:
+    path:    /{id}/addArticle
+    defaults: { _controller: BenevoleBundle:Article:addArticle}
+
+showArticle:
+    path:   /showArticle
+    defaults: { _controller: BenevoleBundle:Article:showArticle}
+
+showAllArticles:
+    path:   /showAllArticles
+    defaults: { _controller: BenevoleBundle:Article:showAllArticles}
+
+readArticleByIdEvent:
+    path:    /{id}/readArticleByIdEvent
+    defaults: { _controller: BenevoleBundle:Article:readArticleByIdEvent}
+
+deleteArticle:
+    path:   /deleteArticle/{id}
+    defaults: { _controller: BenevoleBundle:Article:deleteArticle}
+
+updateArticle:
+    path:   /updateArticle/{id}
+    defaults: { _controller: BenevoleBundle:Article:updateArticle}
+
+showDonationByEvent:
+    path:  /{id}/readByIdEvent
+    defaults: { _controller: BenevoleBundle:DonMaterielController:readByIdEvent}

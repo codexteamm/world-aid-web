@@ -1,0 +1,85 @@
+{% extends "BenevoleBundle:Default:index.html.twig" %}
+
+{% block title %}My Feebacks {% endblock title %}
+
+{% block body %}
+    <h3 style="padding-top:50px;">
+        <center>My Feeback on this event</center>
+    </h3>
+    <hr/>
+    <br/>
+
+
+
+    <div style="padding-bottom: 200px;padding-top:50px; margin-left: 20px;">
+
+        {% if eventfeedback is empty %}
+
+
+            <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">Information </h1>
+                <p class="lead">You don't yet have feedbacks for this event , if you want to add your feedback click on "add feedback" :</p>
+                <a type="button" class="btn btn-outline-success" href="{{ path('addfeedback',{'id':listevents.idEvent}) }}">
+                Add feedback
+                </a>
+            </div>
+            </div>
+
+        {% else %}
+
+
+            {% for eventfb in eventfeedback %}
+
+<style>
+    #abc {
+        position: center;
+        width: 50rem;
+        height: 18rem;
+
+
+
+
+
+    }
+</style>
+
+                <div class="card"  id ="abc">
+
+                    <div class="card-body" style ="">
+                        <h5 class="card-title">{{ eventfb.sujet }}</h5>
+                        <p class="card-text">{{ eventfb.message }}</p>
+                        <a type="button" class="btn btn-outline-success"
+                           href="{{ path('editfeedback',{'id':eventfb.id}) }}">
+                            Edit
+                        </a>
+                        <a type="button" class="btn btn-outline-danger"
+                           href="{{ path('deletefeedback',{'id':eventfb.id}) }}" onclick="return confirm('Are you sure?')">
+                            delete
+                        </a>
+                    </div>
+                </div>
+
+
+
+
+
+            {% endfor %}
+            {% endif %}
+
+
+
+
+
+    </div>
+
+{% endblock body %}
+{% block addedscripts %}
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
+{% endblock %}
+
+

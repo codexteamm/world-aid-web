@@ -69,7 +69,7 @@ deleteDon:
   path:     /deleteDon/{id}
   defaults: { _controller: AssociationBundle:evenement:deleteDon }
 
-pdf:
+pdfevent:
   path:     /showPdf
   defaults: { _controller: AssociationBundle:evenement:showPdf }
 

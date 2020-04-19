@@ -1,0 +1,78 @@
+
+<br>
+
+<style>
+    h1 {
+        display: block;
+        font-size: 2em;
+        margin-top: 0.67em;
+        margin-bottom: 0.67em;
+        margin-left: 0;
+        margin-right: 0;
+        font-weight: bold;
+    }
+    table {
+        border-collapse: collapse;
+        border-color: blue;
+        width: 100%;
+    }
+
+    th, td {
+        text-align: center;
+        padding: 8px;
+    }
+
+    tr:nth-child(even){background-color: #f2f2f2}
+
+    th {
+        background-color: #77afbd;
+        color: white;
+    }
+</style>
+
+<div>
+    <br> </br>
+    <center>
+        <h1 style="font-weight : 700;color: #0a183d">World-Aid©</h1>
+    </center>
+</div>
+<br> </br>
+<br> </br>
+<br> </br>
+
+<div>
+    <h3 >Hello {{ app.user.nom }}</h3>
+</div>
+<div>
+    <h3></h3>
+</div>
+<center>
+    <h1>These are the donations you have made</h1>
+
+</center>
+
+<table>
+
+    <thead>
+    <tr>
+        <th>Donated Materials</th>
+        <th>Quantity</th>
+        <th>Date of donation</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for dons in dons %}
+        {% if app.user == dons.idBenevole %}
+            <tr>
+                <td>{{ dons.typeMateriel }}</td>
+                <td>{{ dons.quantite }}</td>
+                <td>{{ dons.dateDon|date('d/m/Y') }}</td>
+            </tr>
+        {% endif %}
+    {% endfor %}
+    </tbody>
+</table>
+
+</body>
+
+</html>

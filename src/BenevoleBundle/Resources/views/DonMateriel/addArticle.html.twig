@@ -1,0 +1,35 @@
+{% extends "BenevoleBundle:Default:index.html.twig" %}
+
+{% block head %}
+
+{% endblock %}
+
+
+{% block body %}
+    <div class="col-lg-6 p-0">
+        <div class="contact-warp">
+            <div class="section-title mb-0">
+                <h2>Create Article</h2>
+            </div>
+            <p>Here, you can create an article talking about an event you have participated in or share some informations with your fellow volunteers</p>
+            <ul>
+                <li><b>El Ghazela, Ariana</b></li>
+                <li><b>+216 71 810 298</b></li>
+                <li><b>WolrdAid2020@gmail.com</b></li>
+            </ul>
+            <form action="{{ path('addArticle',{'id':event.idEvent})}}" method="post" class="contact-from">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text"  name="titre" placeholder="Title">
+                    </div>
+                    <div class="col-md-12">
+                        <input type="text" name="description" placeholder="Subject">
+                        <textarea placeholder="Message" name="message"></textarea>
+                        <button class="site-btn">Create</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

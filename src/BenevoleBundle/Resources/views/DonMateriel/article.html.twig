@@ -1,0 +1,76 @@
+{% extends "BenevoleBundle:Default:index.html.twig" %}
+
+{% block head %}
+
+{% endblock %}
+
+
+
+
+{% block body %}
+    <center><h4>Articles Published by {{ app.user.username }}</h4></center>
+    {% for articles in articles %}
+    <section class="blog-section spad">
+        <div class="container">
+            <div class="blog-item">
+                <h3>{{ articles.titre }}</h3>
+                <div class="blog-date">{{ articles.date|date('d/m/Y') }}</div>
+                <div class="blog-meta">by <a href=""><b>{{ app.user.nom }}</b></a>  <a href=""><b>{{ app.user.prenom }}</b></a> in <a href=""><b>World Aid</b></a></div>
+                <p>{{ articles.description }}</p>
+                <p>{{ articles.message }}</p>
+            </div>
+            <td><a type="button" class="btn btn-danger btn-sm"  href="{{ path('deleteArticle',{'id':articles.idArticle}) }}"  onclick="return confirm('Do you really want to delete this donation?')">Delete</a></td>
+
+            <td> <a class="btn btn-success btn-sm {{ articles.idArticle }}" data-toggle="modal" data-target="#dataModal{{ articles.idArticle }}" href="{{ path('updateArticle',{'id':articles.idArticle}) }}" id="{{ articles.idArticle }}">
+                    <i class="material-icons">Edit</i></a>
+                <div id="dataModal{{ articles.idArticle }}" tabindex="-1" role="dialog"     class="modal fade">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Edit Your Article</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+                                <h4 class="modal-title" id="modal-title{{ articles.idArticle }}"></h4>
+                            </div>
+                            <div class="modal-body" id="modal_detail{{ articles.idArticle }}">
+                                <form action="{{ path('updateArticle',{'id':articles.idArticle}) }}"  method="POST"  style="margin: 10px">
+                                    <div class="form-group">
+                                        <label for="Material Type">Title</label>
+                                        <input class="form-control" name="titre" type="text" placeholder="Title" value="{{ articles.titre}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Material Type">Date</label>
+                                        <input class="form-control" name="titre" type="text" placeholder="Date of creation" value="{{ articles.date|date('d/m/Y')}}" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="formGroupExampleInput">Description</label>
+                                        <input class="form-control" name="description" type="text" placeholder="Description" value="{{ articles.description }}"   />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="formGroupExampleInput">Message</label>
+                                        <input class="form-control" name="message" type="text" placeholder="Message" value="{{ articles.message }}"   />
+                                    </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button class="btn btn-success" onclick="return confirm('Are you sure you want to edit your article?')">Save</button>
+                                </a>
+                            </div>
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </div>
+    </section>
+    {% endfor %}
+
+{% endblock %}
+
+
+
+{% block script %}
+
+
+{% endblock %}
