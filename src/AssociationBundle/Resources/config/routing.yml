@@ -11,14 +11,14 @@ show_mine:
   path:     /showMine
   defaults: { _controller: AssociationBundle:campement:showMine }
 
-edit:
-  path:     /edit/{id}
+editcamp:
+  path:     /editcampement/{id}
   defaults: { _controller: AssociationBundle:campement:edit }
 
-create:
+createcamp:
   path:     /create
   defaults: { _controller: AssociationBundle:campement:create }
-delete:
+deletecamp:
   path:     /delete/{id}
   defaults: { _controller: AssociationBundle:campement:delete }
 takeCharge:
@@ -80,3 +80,18 @@ mail:
 feedBack:
   path:     /FeedBack/{id}
   defaults: { _controller: AssociationBundle:evenement:FeedBack }
+
+notifications:
+  path: /notifications
+  defaults:
+    _controller: NecessiteuxBundle:Notification:display
+
+demandes:
+  path: /demandes
+  defaults:
+    _controller: NecessiteuxBundle:demandeAide:readAssociation
+
+readnotif:
+  path: /readnotif/{id}
+  defaults:
+    _controller: NecessiteuxBundle:demandeAide:readnotif

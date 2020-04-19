@@ -18,11 +18,11 @@ class CampementType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nom')
+        $builder->add('nom',TextType::class,['label'=>'Name'])
             ->add('description',TextareaType::class, [
                 'attr' => ['rows'=>'5'],
                 ])
-            ->add('paye',TextType::class)
+            ->add('paye',TextType::class,['label'=>'Country'])
             ->add('longitude',HiddenType::class)
             ->add('latitude',HiddenType::class)
             ->add('save', SubmitType::class, ['label' => 'Create ']);

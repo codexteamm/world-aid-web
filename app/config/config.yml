@@ -107,3 +107,9 @@ knp_paginator:
     template:
         pagination: 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig'
         sortable: 'KnpPaginatorBundle:Pagination:sortable_link.html.twig'
+
+notifications:
+    app_id:     975630
+    app_key:    9f93d02c7653b1c3cdd2
+    app_secret: 4120455505545e331a62
+    cluster:    eu

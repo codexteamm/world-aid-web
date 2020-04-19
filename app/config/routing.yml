@@ -21,6 +21,13 @@ login:
     defaults:
         _controller: AppBundle:Controller:DefaultController
         template:    login.html.twig
+
+logout:
+    path: /logout
+    defaults:
+        _controller: AppBundle:Controller:DefaultController
+        template:    logout.html.twig
+
 register:
     path: /register
     defaults:

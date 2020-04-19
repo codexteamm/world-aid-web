@@ -1,6 +1,6 @@
 {% extends "::base2.html.twig" %}
               {% block header %}
-                  <li><a href="#">About</a></li>
+
                   <li><a href="#">camps</a>
                       <ul class="sub-menu">
 
@@ -15,6 +15,15 @@
                           <li><a href="{{ path('show_My') }}">Show my events</a></li>
                       </ul>
                   </li>
+                  <li><a href="#">Interaction</a>
+                      <ul class="sub-menu">
+                          <li><a href="{{ path('demandes') }}">Requests</a></li>
+                          <li><a href="{{ path('notifications') }}">Notifications</a></li>
+                      </ul>
+                  </li>
+
+
+
                   <li><a href="{{ path('contact') }}">Contact</a></li>
               {% endblock header %}
 {% block title %}AppBundle:Security:add{% endblock %}

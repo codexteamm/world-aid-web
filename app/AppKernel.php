@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new SBC\NotificationsBundle\NotificationsBundle(),
 
         ];
 

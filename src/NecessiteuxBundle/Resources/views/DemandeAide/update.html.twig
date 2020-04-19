@@ -1,0 +1,31 @@
+{% extends "@Necessiteux/base_necessiteux.html.twig" %}
+{% block body %}
+<html>
+<head>
+
+</head>
+<body>
+<center>
+    <h1>Edit</h1>
+<fieldset style ="width: 50%">
+    <form method="POST">
+
+    Titre:
+        <SELECT name="titre" value="{{ demande.titre }} size="1">
+            <OPTION>Accomodation
+            <OPTION>Money
+            <OPTION>Food
+            <OPTION>Clothes
+        </SELECT>
+    <br>
+    Description: <input type="text" name ="description" value="{{ demande.description }}">
+
+    <input type="submit" href="{{ path('requests') }}" value="Save">
+    </form>
+</fieldset>
+    <br>
+</center>
+</body>
+</html>
+
+{% endblock %}

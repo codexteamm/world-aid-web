@@ -1,0 +1,98 @@
+{% extends "AssociationBundle:Default:index.html.twig" %}
+
+{% block body %}
+    <html>
+    <body>
+
+    {# {{ dump(listedemandes) }} #}
+    <center>
+
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-md-12">
+                    <h4>Requests list</h4>
+                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." style="
+                background-image: url('../img/searchicon.png'); /* Add a search icon to input */
+  background-position: 10px 12px; /* Position the search icon */
+  background-repeat: no-repeat; /* Do not repeat the icon image */
+  width: 100%; /* Full-width */
+  font-size: 16px; /* Increase font-size */
+  padding: 12px 20px 12px 40px; /* Add some padding */
+  border: 1px solid #ddd; /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */">
+                    <br>
+                    <br>
+                    <center><a href="{{ path('PDF') }}" >Export as PDF</a></center>
+                    <div class="table-responsive">
+                        <table id="mytable" class="table table-bordred table-striped">
+
+                            <thead>
+
+
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Confirmation</th>
+                            </thead>
+                            <tbody>
+                            {% for demande in listedemandes %}
+                                {% if demande.etat==0 %}
+                                    <tr>
+                                        <td>{{ demande.titre }}</td>
+                                        <td>{{ demande.description }}</td>
+                                        <td><p data-placement="top" data-toggle="tooltip" title="Confirmer" ><a  href="{{path('confirm',{'id':demande.idDemande})}}" onclick="return confirm('Are u sure?')" class="btn btn-primary btn-xs" data-title="Edit"   ><span class="glyphicon glyphicon-pencil"  ></span></a></p></td></td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <div class="clearfix"></div>
+                        <ul class="pagination pull-right">
+                            <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                        </ul>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <script>
+            function myFunction() {
+                // Declare variables
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("mytable");
+                tr = table.getElementsByTagName("tr");
+
+                // Loop through all table rows, and hide those who don't match the search query
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[0];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+        </script>
+
+
+    </center>
+    <br>
+
+
+    </body>
+    </html>
+
+{% endblock %}

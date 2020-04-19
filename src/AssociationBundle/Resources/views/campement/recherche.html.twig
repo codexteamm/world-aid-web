@@ -5,7 +5,7 @@
 {% block body %}
 
 
-    <h1 style="margin-top: 20px ;text-align:center; ">all camps</h1>
+    <h1 style="margin-top: 20px ;text-align:center; ">All camps</h1>
     {{ form_start(form) }}
     <div class="form-row align-items-end">
         <div class="col-md-2" style="padding-left: 70px">
@@ -49,7 +49,7 @@
 
                         <div class="card" >
                             <div class="card-body", data-lng="{{ listecamp.longitude }}" , data-lat="{{ listecamp.latitude }}" , data-desc="{{ listecamp.description }}">
-                                <h5 class="card-title"><a href="{{ path('edit',{'id':listecamp.id}) }}" >{{ listecamp.nom }}</a></h5>
+                                <h5 class="card-title"><a href="{{ path('editcamp',{'id':listecamp.id}) }}" >{{ listecamp.nom }}</a></h5>
                                 <p class="card-text">{{ listecamp.description }}</p>
 
 
@@ -71,7 +71,7 @@
 
         </div>
         <div class="col-md-3 maps" style="padding-top: 20px">
-            <p>if you dont find a camp please add it <a href="{{ path('create')}}">here</a></p>
+            <p>if you dont find a camp please add it <a href="{{ path('createcamp')}}">here</a></p>
 
             <div class="map1", id="map1" style="height: 400px; width: 400px; margin-right: 50px">test</div>
 

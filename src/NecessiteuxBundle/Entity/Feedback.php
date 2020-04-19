@@ -1,30 +1,30 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace NecessiteuxBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * DemandeAide
+ * Feedback
  *
- * @ORM\Table(name="demande_aide", indexes={@ORM\Index(name="id_cassocial", columns={"id_cassocial"})})
+ * @ORM\Table(name="feedback", indexes={@ORM\Index(name="id_cassocial", columns={"id_cassocial"})})
  * @ORM\Entity
  */
-class DemandeAide
+class Feedback
 {
     /**
      * @var string
      *
-     * @ORM\Column(name="titre", type="string", length=50, nullable=false)
+     * @ORM\Column(name="titre", type="string", length=200, nullable=false)
      */
     private $titre;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=100, nullable=false)
+     * @ORM\Column(name="message", type="string", length=500, nullable=false)
      */
-    private $description;
+    private $message;
 
     /**
      * @var integer
@@ -36,11 +36,11 @@ class DemandeAide
     /**
      * @var integer
      *
-     * @ORM\Column(name="id_demande", type="integer")
+     * @ORM\Column(name="id_feedback", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idDemande;
+    private $idFeedback;
 
     /**
      * @var \AppBundle\Entity\User
@@ -51,22 +51,6 @@ class DemandeAide
      * })
      */
     private $idCassocial;
-
-    /**
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * @param string $description
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    }
 
     /**
      * @return string
@@ -82,6 +66,22 @@ class DemandeAide
     public function setTitre($titre)
     {
         $this->titre = $titre;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    /**
+     * @param string $message
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
     }
 
     /**
@@ -103,21 +103,21 @@ class DemandeAide
     /**
      * @return int
      */
-    public function getIdDemande()
+    public function getIdFeedback()
     {
-        return $this->idDemande;
+        return $this->idFeedback;
     }
 
     /**
-     * @param int $idDemande
+     * @param int $idFeedback
      */
-    public function setIdDemande($idDemande)
+    public function setIdFeedback($idFeedback)
     {
-        $this->idDemande = $idDemande;
+        $this->idFeedback = $idFeedback;
     }
 
     /**
-     * @return User
+     * @return \AppBundle\Entity\User
      */
     public function getIdCassocial()
     {
@@ -125,12 +125,13 @@ class DemandeAide
     }
 
     /**
-     * @param User $idCassocial
+     * @param \AppBundle\Entity\User $idCassocial
      */
     public function setIdCassocial($idCassocial)
     {
         $this->idCassocial = $idCassocial;
     }
+
 
 
 }

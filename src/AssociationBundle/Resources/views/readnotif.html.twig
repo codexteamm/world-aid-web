@@ -1,0 +1,66 @@
+{% extends "AssociationBundle:Default:index.html.twig" %}
+
+{% block body %}
+    <html>
+    <body>
+
+    {# {{ dump(listedemandes) }} #}
+    <center>
+
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-md-12">
+                    <h4>Your request info:</h4>
+                    <br>
+                    <br>
+                    <center><a href="{{ path('PDF') }}" >Exporter as PDF</a></center>
+                    <div class="table-responsive">
+                        <table id="mytable" class="table table-bordred table-striped">
+
+                            <thead>
+
+
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>State</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                            </thead>
+                            <tbody>
+                            {% for demande in listedemandes %}
+                                    <tr>
+                                        <td>{{ demande.titre }}</td>
+                                        <td>{{ demande.description }}</td>
+                                        {% if  demande.etat==0  %}
+                                            <td> En attente de confirmation</td>
+                                            <td><p data-placement="top" data-toggle="tooltip" title="Modifier" ><a  href="{{ path('update',{'id':demande.idDemande}) }}" onclick="return confirm('Are u sure?')" class="btn btn-primary btn-xs" data-title="Edit"   ><span class="glyphicon glyphicon-pencil"  ></span></a></p></td>
+                                            <td><p data-placement="top" data-toggle="tooltip" title="Supprimer"><a href="{{ path('delete',{'id':demande.idDemande}) }}" onclick="return confirm('Are u sure?')" class="btn btn-danger btn-xs" data-title="Delete"    ><span class="glyphicon glyphicon-trash"></span></a></p></td>
+                                        {% else %}
+                                            <td> Confirmée</td>
+
+
+
+
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </center>
+    <br>
+
+
+    </body>
+    </html>
+
+{% endblock %}

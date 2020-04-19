@@ -1,0 +1,93 @@
+
+<br>
+
+<style>
+    h1 {
+        display: block;
+        font-size: 2em;
+        margin-top: 0.67em;
+        margin-bottom: 0.67em;
+        margin-left: 0;
+        margin-right: 0;
+        font-weight: bold;
+    }
+    table {
+        border-collapse: collapse;
+        border-color: blue;
+        width: 100%;
+    }
+
+    th, td {
+        text-align: center;
+        padding: 8px;
+    }
+
+    tr:nth-child(even){background-color: #f2f2f2}
+
+    th {
+        background-color: #77afbd;
+        color: white;
+    }
+</style>
+<img src="img/logo2.png" style="width: 100px;height:50px" />
+
+<div>
+    <br> </br>
+    <center>
+        <h1 style="font-weight : 700;color: #0a183d">World-Aid©</h1>
+    </center>
+</div>
+<br> </br>
+<br> </br>
+<br> </br>
+
+<div>
+    <h3 >Hello Mr/Mrs ,</h3>
+</div>
+<div>
+    <h3></h3>
+</div>
+<center>
+    <h1>These are your deposited requests</h1>
+
+</center>
+
+<table>
+
+    <thead>
+    <tr>
+
+    <th>Title</th>
+    <th>Description</th>
+    <th>State</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for demande in demandes %}
+        {% if app.user == demande.idCassocial %}
+        <tr>
+            <td>{{ demande.titre }}</td>
+            <td>{{ demande.description }}</td>
+            {% if  demande.etat==0  %}
+                <td> En attente de confirmation</td>
+            {% else %}
+                <td> Confirmée</td>
+            {% endif %}
+
+
+
+        </tr>
+        {% endif %}
+    {% endfor %}
+    </tbody>
+</table>
+
+<img src="img/tampon.png" style="width: 100px;height:100px;position: center;" />
+
+</body>
+<center>
+
+</center>
+
+
+</html>

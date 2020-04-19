@@ -1,3 +1,53 @@
 necessiteux_homepage:
     path:     /
     defaults: { _controller: NecessiteuxBundle:Default:index }
+
+requests:
+    path: /read
+    defaults:
+        _controller: NecessiteuxBundle:demandeAide:read
+
+create:
+    path: /create
+    defaults:
+        _controller: NecessiteuxBundle:demandeAide:create
+
+update:
+    path: /update/{id}
+    defaults:
+        _controller: NecessiteuxBundle:demandeAide:update
+
+delete:
+    path: /delete/{id}
+    defaults:
+        _controller: NecessiteuxBundle:demandeAide:delete
+
+confirm:
+    path: /confirm/{id}
+    defaults:
+        _controller: NecessiteuxBundle:demandeAide:confirm
+
+PDF:
+    path: /pdf
+    defaults:
+        _controller: NecessiteuxBundle:demandeAide:generate_pdf
+
+create2:
+    path: /create2
+    defaults:
+        _controller: NecessiteuxBundle:Feedback:create
+
+feedbacks:
+    path: /read2
+    defaults:
+        _controller: NecessiteuxBundle:Feedback:read
+
+update2:
+    path: /update2/{id}
+    defaults:
+        _controller: NecessiteuxBundle:Feedback:update
+
+delete2:
+    path: /delete2/{id}
+    defaults:
+        _controller: NecessiteuxBundle:Feedback:delete

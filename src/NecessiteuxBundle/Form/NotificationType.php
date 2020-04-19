@@ -1,33 +1,28 @@
 <?php
 
-namespace AssociationBundle\Form;
+namespace NecessiteuxBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class RechercheType extends AbstractType
+class NotificationType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nom',TextType::class,['label'=>'Name'])
-            ->add('paye',TextType::class,['label'=>'Country'])
-            ->add ('chercher',SubmitType::class, ['label'=>'Search']
-
-);
-
+        #$builder->add('titre')
+            #->add('message');
     }/**
  * {@inheritdoc}
  */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AssociationBundle\Entity\RechercheType'
+            'data_class' => 'NecessiteuxBundle\Entity\Notification'
         ));
     }
 
@@ -36,6 +31,8 @@ class RechercheType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'associationbundle_RechercheType';
+        return 'necessiteuxbundle_notification';
     }
+
+
 }

@@ -52,6 +52,86 @@ class Feedback
      */
     private $idCassocial;
 
+    /**
+     * @return string
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+    /**
+     * @param string $titre
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    /**
+     * @param string $message
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+    }
+
+    /**
+     * @return int
+     */
+    public function getEtat()
+    {
+        return $this->etat;
+    }
+
+    /**
+     * @param int $etat
+     */
+    public function setEtat($etat)
+    {
+        $this->etat = $etat;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdFeedback()
+    {
+        return $this->idFeedback;
+    }
+
+    /**
+     * @param int $idFeedback
+     */
+    public function setIdFeedback($idFeedback)
+    {
+        $this->idFeedback = $idFeedback;
+    }
+
+    /**
+     * @return User
+     */
+    public function getIdCassocial()
+    {
+        return $this->idCassocial;
+    }
+
+    /**
+     * @param User $idCassocial
+     */
+    public function setIdCassocial($idCassocial)
+    {
+        $this->idCassocial = $idCassocial;
+    }
+
 
 }
 

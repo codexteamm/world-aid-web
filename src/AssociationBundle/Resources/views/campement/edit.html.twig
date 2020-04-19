@@ -29,8 +29,8 @@
             <div class="col-md-6 maps">
                 <div id="map" style="position: relative;height: 400px;width: 350px;"></div>
                 {% if campement.idassociation is empty  %}
-                <p>if you fin this capms useless and you want to delete ckick <a
-                            href="{{ path('delete',{'id':campement.id}) }}">here</a>
+                    <p>If you find this camp useless and you want to delete it click here
+                    <a href="{{ path('deletecamp',{'id':campement.id}) }}">here</a>
                 </p>
                 {% endif %}
 
@@ -38,7 +38,7 @@
             <div class="col-md-6 maps">
                 <form method="POST">
                     <div class="form-group">
-                        <label for="nom">nom</label>
+                        <label for="nom">Name</label>
                         <input type="text" class="form-control" id="nom" name="nom" value="{{ campement.nom }}">
 
                     </div>
