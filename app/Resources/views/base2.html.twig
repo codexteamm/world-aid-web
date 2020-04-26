@@ -47,7 +47,8 @@
 
 <!-- Header section -->
 <header class="header-section clearfix">
-    <a href="" class="site-logo">
+
+    <a href="{{ path('homepage') }}" class="site-logo">
         <div style="font-family: 'Teko', sans-serif;font-size: 40px;color: #66bf00;">w
 
             <img src="{{ asset('img/logo.png') }}" alt=""/>rld aid </div>
@@ -55,27 +56,37 @@
     <div class="header-right">
 
         <div class="user-panel">
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                <li><a href="{{ path('fos_user_profile_edit') }}">
-                        Logged in as {{ app.user.username }}
-                    </a>
-                </li>
-                <li><a href="{{ path('fos_user_security_logout') }}">
-                        {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                    </a>
-                </li>
-            {% else %}
-                <li><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
+
+            {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+                <a href="{{ path('login') }}" class="login">Login</a>
+                <a href="{{ path('register') }}" class="register">Create an account</a>
             {% endif %}
         </div>
 
     </div>
     <ul class="main-menu">
 
-        <li><a href="http://localhost/pidev_world-aid-master/web/app_dev.php/home">Home</a></li>
+
         {% block header %}
 
         {% endblock header %}
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <li>|</li>
+            <li><a href="#">
+                    <i class="fa fa-user-circle-o" aria-hidden="true"></i> Logged in as {{ app.user.username }}
+                </a>
+                <ul class="sub-menu">
+
+                    <li><a href="{{ path('fos_user_profile_edit') }}">
+                            edit profile
+                        </a></li>
+                    <li><a href="{{ path('fos_user_security_logout') }}">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i>  {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                        </a></li>
+                </ul>
+            </li>
+        {% endif %}
 
     </ul>
 </header>
@@ -119,7 +130,7 @@
                                 <li><a href="">Newsletter</a></li>
                                 <li><a href="">Careers</a></li>
                                 <li><a href="">Press</a></li>
-                                <li><a href="">Contact</a></li>
+                                <li><a href="{{ path('contact') }}">Contact</a></li>
                             </ul>
                         </div>
                     </div>

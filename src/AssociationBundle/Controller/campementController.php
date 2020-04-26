@@ -11,10 +11,67 @@ use AssociationBundle\Form\ContactType;
 use AssociationBundle\Form\RechercheType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-class CampementController extends Controller
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+
+class campementController extends Controller
 {
+    public function newMobileAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $Campement = new Campement();
+        $Campement->setNom($request->get('nom'));
+        $Campement->setDescription($request->get('description'));
+        $Campement->setLatitude($request->get('latitude'));
+        $Campement->setLongitude($request->get('longitude'));
+        $Campement->setPaye($request->get('pays'));
+
+        $em->persist($Campement);
+        $em->flush();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($Campement);
+        return new JsonResponse($formatted);
+    }
+    public function allmobileAction()
+    {
+        $repository = $this->getDoctrine()->getManager()->getRepository(Campement::class);
+
+        $listecamp = $repository->findAll();
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setIgnoredAttributes(array('idassociation'));
+        $encoder = new JsonEncoder();
+
+        $serializer = new Serializer(array($normalizer), array($encoder));
+        $serializer->serialize(Campement::class, 'json');
+
+        /*********************************/
+        $serializer = new Serializer([$normalizer]);
+        $formatted = $serializer->normalize($listecamp);
+        return new JsonResponse($formatted);
+    }
+
+    public function findMobileAction($id)
+    {
+        $tasks = $this->getDoctrine()->getManager()
+            ->getRepository('AppBundle:Campement')
+            ->find($id);
+        /****************************/
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setIgnoredAttributes(array('idassociation'));
+        $encoder = new JsonEncoder();
+
+        $serializer = new Serializer(array($normalizer), array($encoder));
+        $serializer->serialize(Campement::class, 'json');
+
+        /*********************************/
+        $serializer = new Serializer([$normalizer]);
+        $formatted = $serializer->normalize($tasks);
+        return new JsonResponse($formatted);
+    }
 
     public function searchAction(Request $request)
     {

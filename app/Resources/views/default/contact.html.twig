@@ -1,6 +1,20 @@
-{% extends "AssociationBundle:Default:index.html.twig" %}
+{% extends 'base2.html.twig' %}
+            {% block header %}
+                <li> <a href="#section2">About</a></li>
+                <li><a href="#">Pages</a>
+                    <ul class="sub-menu">
+                        <li><a href="category.html">Category</a></li>
+                        <li><a href="playlist.html">Playlist</a></li>
+                        <li><a href="artist.html">Artist</a></li>
+                        <li><a >Blog</a></li>
+                        <li><a href="{{ path('contact') }}">Contact</a></li>
+                    </ul>
+                </li>
+                <li><a href="blog.html">News</a></li>
+                <li><a href="{{ path('contact') }}">Contact</a></li>
+            {% endblock header %}
 
-{% block title %}All camps{% endblock %}
+{% block title %}contact{% endblock %}
 
 {% block body %}
 
@@ -10,7 +24,7 @@
             <div class="row">
                 <div class="col-lg-6 p-0">
                     <!-- Map -->
-                    <div class="map"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d10784.188505644011!2d19.053119335158936!3d47.48899529453826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1543907528304" style="border:0" allowfullscreen></iframe></div>
+                    <div class="map"><iframe src="https://maps.google.com/maps?q=tunisie&t=&z=13&ie=UTF8&iwloc=&output=embed&z=7" style="border:0" allowfullscreen></iframe></div>
                 </div>
                 <div class="col-lg-6 p-0">
                     <div class="contact-warp">

@@ -1,3 +1,13 @@
+allmobile:
+  path:     /allmobile
+  defaults: { _controller: AssociationBundle:campement:allmobile }
+newAction:
+  path:     /newmobile
+  defaults: { _controller: AssociationBundle:campement:newMobile }
+findmobile:
+  path:     /findmobile/{id}
+  defaults: { _controller: AssociationBundle:campement:findMobile }
+
 association_homepage:
   path:     /
   defaults: { _controller: AssociationBundle:Default:index }
@@ -95,3 +105,13 @@ readnotif:
   path: /readnotif/{id}
   defaults:
     _controller: NecessiteuxBundle:demandeAide:readnotif
+
+homeasso:
+  path: /home
+  defaults:
+    _controller: AssociationBundle:Default:index
+
+
+showmobile:
+  path:     /showmobile/{id}
+  defaults: { _controller: AssociationBundle:campement:showmobile }
