@@ -3,8 +3,6 @@ easy_admin:
     # change the following to the namespaces of your own entities
     - AppBundle\Entity\User
     - AppBundle\Entity\Campement
-    - AppBundle\Entity\DemandeAide
     - AppBundle\Entity\DonMateriel
     - AppBundle\Entity\Evenement
-    - AppBundle\Entity\Feedback
     - AssociationBundle\Entity\Contact

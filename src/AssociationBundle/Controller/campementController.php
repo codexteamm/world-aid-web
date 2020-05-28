@@ -3,12 +3,16 @@
 namespace AssociationBundle\Controller;
 
 use AppBundle\Entity\Campement;
+use AppBundle\Entity\Evenement;
+use AppBundle\Entity\User;
 use AssociationBundle\Entity\Contact;
 use AssociationBundle\Form\CampementType;
 use AssociationBundle\Form\ContactType;
 
 
 use AssociationBundle\Form\RechercheType;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -20,6 +24,49 @@ use Symfony\Component\Serializer\Serializer;
 
 class campementController extends Controller
 {
+
+    public function deletecCmpMobileAction(Request $request)
+    {
+        //get the request with $id with manager permission
+        $em = $this->getDoctrine()->getManager();
+        $campement = $this->getDoctrine()->getManager()
+            ->getRepository('AppBundle:Campement')
+            ->find($request->get('idcamp'));
+        $em->remove($campement);
+        $em->flush();
+
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setIgnoredAttributes(array('idassociation'));
+        $encoder = new JsonEncoder();
+
+        $serializer = new Serializer(array($normalizer), array($encoder));
+        $serializer->serialize(Eventfeedback::class, 'json');
+
+        $serializer = new Serializer([$normalizer]);
+        $formatted = $serializer->normalize($campement);
+        return new JsonResponse($formatted);
+    }
+    public function updateCampMobileAction(\Symfony\Component\HttpFoundation\Request $request)
+    {
+        //get the request with $id with manager permission
+        $em = $this->getDoctrine()->getManager();
+        $campement = $this->getDoctrine()->getManager()
+            ->getRepository('AppBundle:Campement')
+            ->find($request->get('idcamp'));
+        $campement->setDescription($request->get('description'));
+        $em->flush();
+
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setIgnoredAttributes(array('idassociation'));
+        $encoder = new JsonEncoder();
+
+        $serializer = new Serializer(array($normalizer), array($encoder));
+        $serializer->serialize(Campement::class, 'json');
+
+        $serializer = new Serializer([$normalizer]);
+        $formatted = $serializer->normalize($campement);
+        return new JsonResponse($formatted);
+    }
     public function newMobileAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
@@ -35,6 +82,70 @@ class campementController extends Controller
         $serializer = new Serializer([new ObjectNormalizer()]);
         $formatted = $serializer->normalize($Campement);
         return new JsonResponse($formatted);
+    }
+    public function showmineMobileAction(Request $request)
+    {
+        $repositoryuser = $this->getDoctrine()->getManager()->getRepository(User::class);
+        $user = $repositoryuser->find($request->get('idcamp'));
+
+        $listecamp=$user->getIdcampement();
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setIgnoredAttributes(array('idassociation'));
+        $encoder = new JsonEncoder();
+
+        $serializer = new Serializer(array($normalizer), array($encoder));
+        $serializer->serialize(Campement::class, 'json');
+
+        /*********************************/
+        $serializer = new Serializer([$normalizer]);
+        $formatted = $serializer->normalize($listecamp);
+        return new JsonResponse($formatted);
+
+
+
+    }
+    public function takeChargeMobileAction(Request $request)
+    {
+
+        $repository = $this->getDoctrine()->getManager()->getRepository(Campement::class);
+        $listecamp = $repository->find($request->get('idcamp'));
+
+        $repositoryuser = $this->getDoctrine()->getManager()->getRepository(User::class);
+
+                $user = $repositoryuser->find($request->get('iduser'));
+
+
+        $user->addcampement($listecamp);
+        $this->get('fos_user.user_manager')->updateUser($user, false);
+        $message = (new \Swift_Message('Hello Email'))
+            ->setFrom('worldaid2020@gmail.com')
+            ->setTo($user->getEmail())
+            ->setBody("you juste support"." ".$listecamp->getNom()." camp's");
+        $this->get('mailer')->send($message);
+
+        // make more modifications to the database
+
+        $this->getDoctrine()->getManager()->flush();
+        return new JsonResponse(['result' => 'ok' ]);
+    }
+    public function nontakeChargeMobileMoblieAction(Request $request)
+    {
+
+        $repository = $this->getDoctrine()->getManager()->getRepository(Campement::class);
+        $listecamp = $repository->find($request->get('idcamp'));
+
+        $repositoryuser = $this->getDoctrine()->getManager()->getRepository(User::class);
+
+        $user = $repositoryuser->find($request->get('iduser'));
+
+
+        $user->removecampement($listecamp);
+        $this->get('fos_user.user_manager')->updateUser($user, false);
+
+        // make more modifications to the database
+
+        $this->getDoctrine()->getManager()->flush();
+        return new JsonResponse(['result' => 'ok' ]);
     }
     public function allmobileAction()
     {
@@ -53,7 +164,6 @@ class campementController extends Controller
         $formatted = $serializer->normalize($listecamp);
         return new JsonResponse($formatted);
     }
-
     public function findMobileAction($id)
     {
         $tasks = $this->getDoctrine()->getManager()
@@ -72,7 +182,6 @@ class campementController extends Controller
         $formatted = $serializer->normalize($tasks);
         return new JsonResponse($formatted);
     }
-
     public function searchAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
@@ -170,7 +279,14 @@ class campementController extends Controller
         $repository = $this->getDoctrine()->getManager()->getRepository(Campement::class);
 
             $listecamp = $repository->find($id);
+
             $user->addcampement($listecamp);
+        $message = (new \Swift_Message('Hello Email'))
+            ->setFrom('worldaid2020@gmail.com')
+            ->setTo($user->getEmail())
+            ->setBody("you juste support"." ".$listecamp->getNom()." camp's");
+
+        $this->get('mailer')->send($message);
 
             $this->get('fos_user.user_manager')->updateUser($user, false);
 
@@ -181,6 +297,37 @@ class campementController extends Controller
 
 
 
+    }
+    public function pdfCampementAction($id)
+    {
+        $em=$this->getDoctrine()->getManager();
+        $campement = $em->getRepository(Campement::class)->find($id);
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+
+        $repository = $this->getDoctrine()->getManager()->getRepository(Evenement::class);
+        $listeevent = $repository->findAll();
+
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('@Association/campement/pdf.html.twig', array("campement" => $campement));
+
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => false
+        ]);
     }
     public function nontakeChargeAction($id)
     {

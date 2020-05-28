@@ -1,0 +1,21 @@
+{% block body %}
+    <h1 align="center">Details of {{ campement.nom }} camps</h1>
+
+
+
+<h2>description:</h2>
+    <p>
+        {{ campement.description }}
+    </p>
+
+    <p> this camp is supported by</p>
+
+    <ul class="list-group">
+        {% for camp in campement.idassociation %}
+            <li class="list-group-item">{{ camp }}</li>
+        {% endfor %}
+
+
+    </ul>
+
+{% endblock %}

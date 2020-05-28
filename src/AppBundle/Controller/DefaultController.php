@@ -44,8 +44,13 @@ class DefaultController extends Controller
             //$campement->setIdassociation($user);
             //create an entity manager object
             $em = $this->getDoctrine()->getManager();
-
+            $message = (new \Swift_Message($contact->getSubject()))
+                ->setFrom('worldaid2020@gmail.com')
+                ->setTo("worldaid2020@gmail.com")
+                ->setBody($contact->getMessage());
+            $this->get('mailer')->send($message);
             //persist the object $club in the ORM
+
             $em->persist($contact);
             //update the data base with flush
             $em->flush();

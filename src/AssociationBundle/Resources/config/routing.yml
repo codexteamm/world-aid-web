@@ -1,9 +1,25 @@
 allmobile:
   path:     /allmobile
   defaults: { _controller: AssociationBundle:campement:allmobile }
+deletecCmpMobile:
+  path:     /deletecCmpMobile
+  defaults: { _controller: AssociationBundle:campement:deletecCmpMobile }
+showmineMobile:
+  path:     /showmineMobile
+  defaults: { _controller: AssociationBundle:campement:showmineMobile }
+nontakeChargeMobileMoblie:
+  path:     /nontakeChargeMobileMoblie
+  defaults: { _controller: AssociationBundle:campement:nontakeChargeMobileMoblie }
+updateCampMobile:
+  path:     /updateCampMobile
+  defaults: { _controller: AssociationBundle:campement:updateCampMobile }
 newAction:
   path:     /newmobile
   defaults: { _controller: AssociationBundle:campement:newMobile }
+
+takeChargeMobile:
+  path:     /takeChargeMobileAction
+  defaults: { _controller: AssociationBundle:campement:takeChargeMobile }
 findmobile:
   path:     /findmobile/{id}
   defaults: { _controller: AssociationBundle:campement:findMobile }
@@ -24,6 +40,9 @@ show_mine:
 editcamp:
   path:     /editcampement/{id}
   defaults: { _controller: AssociationBundle:campement:edit }
+pdfcampement:
+  path:     /pdfCampement/{id}
+  defaults: { _controller: AssociationBundle:campement:pdfCampement }
 
 createcamp:
   path:     /create
@@ -82,6 +101,7 @@ deleteDon:
 pdfevent:
   path:     /showPdf
   defaults: { _controller: AssociationBundle:evenement:showPdf }
+
 
 mail:
   path:     /sendMail

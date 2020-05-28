@@ -22,7 +22,7 @@ class Campement
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=30, nullable=false)
+     * @ORM\Column(name="description", type="string", length=4000, nullable=false)
      */
     private $description;
 

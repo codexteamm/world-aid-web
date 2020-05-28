@@ -18,7 +18,11 @@
                         <div class="card" >
                             <div class="card-body", data-lng="{{ listecamp.longitude }}" , data-lat="{{ listecamp.latitude }}" , data-desc="{{ listecamp.description }}">
                                 <h5 class="card-title"><a href="{{ path('editcamp',{'id':listecamp.id}) }}" >{{ listecamp.nom }}</a></h5>
-                                <p class="card-text">{{ listecamp.description }}</p>
+                                <p class="card-text" style="   overflow: hidden;
+                                        text-overflow: ellipsis;
+                                        display: -webkit-box;
+                                        -webkit-line-clamp: 2; /* number of lines to show */
+                                        -webkit-box-orient: vertical">{{ listecamp.description }}</p>
 
                                 <a href="{{ path('nontakeCharge',{'id':listecamp.id}) }}" class="btn btn-outline-danger" onclick="return confirm('are u sure?')">unsupportCharge</a>
 

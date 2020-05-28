@@ -1,5 +1,5 @@
-{% extends 'base2.html.twig' %}
-            {% block header %}
+{% extends 'AssociationBundle:Default:index.html.twig' %}
+           {# {% block header %}
                 <li> <a href="#section2">About</a></li>
                 <li><a href="#">Pages</a>
                     <ul class="sub-menu">
@@ -12,7 +12,7 @@
                 </li>
                 <li><a href="blog.html">News</a></li>
                 <li><a href="{{ path('contact') }}">Contact</a></li>
-            {% endblock header %}
+            {% endblock header %}#}
 
 {% block title %}contact{% endblock %}
 
@@ -31,11 +31,11 @@
                         <div class="section-title mb-0">
                             <h2>Get in touch</h2>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore mag na aliqua. Quis ipsum suspendisse ultrices gravida. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doe iusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. </p>
+                        <p>WE’D LOVE TO HEAR FROM YOU IF YOU HAVE FEEDBACK, ANY QUESTIONS OR WOULD LIKE TO GET INVOLVED.  if you have  Any Questions or Concerns or problem please contact us . we’ll contact you as son as posible. </p>
                         <ul>
-                            <li>Main Road , No 25/11</li>
-                            <li>+34 556788 3221</li>
-                            <li>contact@solmusic.com</li>
+                            <li>tunisia , sfax 25/11</li>
+                            <li>99368028</li>
+                            <li>worldaid2020@gmail.com</li>
                         </ul>
 
                         <form class="contact-from" name="associationbundle_contact" method="post">
@@ -57,6 +57,8 @@
                                 <div class="col-md-12">
                                     {{ form_row(form.subject) }}
                                     {{ form_row(form.message) }}
+
+
                                     <button class="site-btn" type="submit">send message</button>
 
 
@@ -74,6 +76,17 @@
         </div>
     </section>
     <!-- Blog section end -->
+    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+
+    <script>
+
+        $("#associationbundle_contact_email").val("{{ app.user.email }}");
+        $("#associationbundle_contact_name").val("{{ app.user.UserName }}");
+
+
+        associationbundle_contact_name
+
+    </script>
 
 
 {% endblock %}
