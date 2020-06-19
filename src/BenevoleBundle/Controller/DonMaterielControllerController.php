@@ -14,6 +14,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 
 class DonMaterielControllerController extends Controller
@@ -175,5 +179,134 @@ class DonMaterielControllerController extends Controller
 
 
     }
+    public function deleteDonMobileAction(Request $request){
 
+        $em=$this->getDoctrine()->getManager();
+        $donMateriel= $em->getRepository(DonMateriel::class)->find($request->get('reference'));
+        $em->remove($donMateriel);
+        $em->flush();
+
+        $normalizer = new ObjectNormalizer();
+        $encoder = new JsonEncoder();
+
+        $serializer = new Serializer(array($normalizer), array($encoder));
+        $serializer->serialize(DonMateriel::class, 'json');
+
+        $serializer = new Serializer([$normalizer]);
+        $formatted = $serializer->normalize($donMateriel);
+        return new JsonResponse($formatted);
+
+    }
+    public function editDonMobileAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $DonMateriel = $em->getRepository(DonMateriel::class)->find($request->get('reference'));
+        if(!$DonMateriel){
+            throw $this->createNotFoundException('No Donations found for reference ');
+        }
+        if ($request->isMethod('POST')) {
+            $DonMateriel->setTypeMateriel($request->get('typeMateriel'));
+            $DonMateriel->setQuantite($request->get('quantite'));
+            $em->flush();
+        }
+        $normalizer = new ObjectNormalizer();
+        $encoder = new JsonEncoder();
+        $serializer = new Serializer(array($normalizer), array($encoder));
+        $serializer->serialize(DonMateriel::class, 'json');
+        $serializer = new Serializer([$normalizer]);
+        $formatted = $serializer->normalize($DonMateriel);
+        return new JsonResponse($formatted);
+    }
+
+    public function allDonsMobileAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $dons = $em->getRepository(DonMateriel::class)->findAll();
+        $data = array();
+        foreach ($dons as $key => $don){
+            $data[$key]['reference'] = $don->getReference();
+            $data[$key]['typeMateriel'] = $don->getTypeMateriel();
+            $data[$key]['idEvenement']= $don->getIdEvenement();
+            $data[$key]['quantite'] = $don->getQuantite();
+            $data[$key]['dateDon'] = $don->getDateDon();
+
+        }
+        return new JsonResponse($data);
+    }
+
+
+    public function findDonMobileAction($id){
+        $DonMateriel = $this->getDoctrine()->getManager()
+            ->getRepository('AppBundle:DonMateriel')
+            ->find($id);
+        /****************************/
+        $normalizer = new ObjectNormalizer();
+
+
+        $encoder = new JsonEncoder();
+
+        $serializer = new Serializer(array($normalizer), array($encoder));
+        $serializer->serialize(DonMateriel::class, 'json');
+
+        /*********************************/
+
+        $serializer = new Serializer([$normalizer]);
+        $formatted = $serializer->normalize($DonMateriel);
+        return new JsonResponse($formatted);
+    }
+
+    public function newDonMobileAction(Request $request)
+    {
+        $DonMateriel = new DonMateriel();
+        $repository = $this->getDoctrine()->getManager()->getRepository(Evenement::class);
+        $event = $repository->find($request->get('idEvent'));
+        $repositoryuser = $this->getDoctrine()->getManager()->getRepository(User::class);
+        $user = $repositoryuser->find($request->get('idBenevole'));
+        $DonMateriel->setIdEvenement($event);
+        $DonMateriel->setIdBenevole($user);
+        $DonMateriel->setTypeMateriel($request->get('typeMateriel'));
+        $DonMateriel->setQuantite($request->get('quantite'));
+        $DonMateriel->setDateDon(new \DateTime('now'));
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($DonMateriel);
+        $em->flush();
+        $normalizer = new ObjectNormalizer();
+        $encoder = new JsonEncoder();
+
+        $serializer = new Serializer(array($normalizer), array($encoder));
+        $serializer->serialize(DonMateriel::class, 'json');
+
+        $serializer = new Serializer([$normalizer]);
+        $formatted = $serializer->normalize($DonMateriel);
+        return new JsonResponse($formatted);
+    }
+
+
+
+
+
+
+
+    public function readEventMobileAction(Request $request){
+        $repository = $this->getDoctrine()->getManager()->getRepository(Evenement::class);
+        $event = $repository->find($request->get('idEvent'));
+
+        $repositoryuser = $this->getDoctrine()->getManager()->getRepository(User::class);
+        $user = $repositoryuser->find($request->get('idBenevole'));
+
+        $eventfeedback =$this->getDoctrine()->getManager()->getRepository(DonMateriel::class)->findBy(['idBenevole' => $user,
+            'idEvenement' => $event]);
+
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setIgnoredAttributes(array('idEvenement','idBenevole'));
+        $encoder = new JsonEncoder();
+
+        $serializer = new Serializer(array($normalizer), array($encoder));
+        $serializer->serialize(DonMateriel::class, 'json');
+
+        $serializer = new Serializer([$normalizer]);
+        $formatted = $serializer->normalize($eventfeedback);
+        return new JsonResponse($formatted);
+
+    }
 }

@@ -43,3 +43,33 @@ showevent:
     defaults: { _controller: BenevoleBundle:Benevole:showevent }
 
 
+alleventsJSON:
+    path:     /eventsJSON
+    defaults: { _controller: BenevoleBundle:Benevole:allEventsJSON }
+
+myeventJSON:
+    path:     /myeventsjson
+    defaults: { _controller: BenevoleBundle:Benevole:benevoleEventsJSON }
+se_benevolerJSON:
+    path:     /volunteerjson
+    defaults: { _controller: BenevoleBundle:Benevole:volunteerJSON }
+
+
+se_debenevolerJSON:
+    path:     /unvolunteerjson
+    defaults: { _controller: BenevoleBundle:Benevole:unvolunteerJSON }
+editfeedbackJSON:
+    path:    /editfeedbackjson
+    defaults: { _controller: BenevoleBundle:Feedback:editfeedbackJSON }
+showfeedbackJSON:
+    path:    /showfeedbackjson
+    defaults: { _controller: BenevoleBundle:Feedback:showfeedbackJSON }
+deletefeedbackJSON:
+    path:    /deletefeedbackjson
+    defaults: { _controller: BenevoleBundle:Feedback:deletefeedbackJSON }
+showeventJSON:
+    path:    /showeventjson
+    defaults: { _controller: BenevoleBundle:Benevole:showeventjson }
+addfeedbackjson:
+    path:     /addfeedbackjson
+    defaults: { _controller: BenevoleBundle:Feedback:addfeedbackJSON }

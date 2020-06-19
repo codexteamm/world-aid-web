@@ -1,5 +1,7 @@
 {% extends "BenevoleBundle:Default:index.html.twig" %}
 
+{% block title %}AppBundle:Security:add{% endblock %}
+
 {% block head %}
 
 {% endblock %}
@@ -19,7 +21,7 @@
                     <div class="blog-item">
                         <h3>{{ listeArticles.titre }}</h3>
                         <div class="blog-date">{{ listeArticles.date|date('d/m/Y') }}</div>
-                        <div class="blog-meta">by <a href=""><b>{{ app.user.nom }}</b></a>  <a href=""><b>{{ app.user.prenom }}</b></a> in <a href=""><b>World Aid</b></a></div>
+                        <div class="blog-meta">by <a href=""><b>{{ listeArticles.idBenevole.nom }}</b></a>  <a href=""><b>{{ listeArticles.idBenevole.prenom }}</b></a> in <a href=""><b>World Aid</b></a></div>
                         <p>{{ listeArticles.description }}</p>
                         <p>{{ listeArticles.message }}</p>
                     </div>

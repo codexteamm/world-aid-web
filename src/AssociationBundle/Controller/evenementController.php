@@ -7,14 +7,15 @@ namespace AssociationBundle\Controller;
 use AppBundle\Entity\DonMateriel;
 use AppBundle\Entity\Evenement;
 use AppBundle\Entity\User;
-use AssociationBundle\Entity\Eventfeedback;
+#use AssociationBundle\Entity\Eventfeedback;
 use AssociationBundle\Form\evenementType;
-use AssociationBundle\Form\EventfeedbackType;
+#use AssociationBundle\Form\EventfeedbackType;
 use BenevoleBundle\BenevoleBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 // Include Dompdf required namespaces
 use Dompdf\Dompdf;
@@ -22,6 +23,193 @@ use Dompdf\Options;
 
 class evenementController extends Controller
 {
+
+    public function showMyMobileAction()
+    {
+        //$repositoryuser = $this->getDoctrine()->getManager()->getRepository(User::class);
+        //$user = $repositoryuser->find($request->get('idAssociation'));
+
+        // $listevents = $user->getIdevenement();
+        //$normalizer = new ObjectNormalizer();
+        //$normalizer->setIgnoredAttributes(array('idbenevole','dateDebutEvent', 'dateFinEvent'));
+        //$encoder = new JsonEncoder();
+
+        //$serializer = new Serializer(array($normalizer), array($encoder));
+        //$serializer->serialize(evenement::class, 'json');
+
+        //$serializer = new Serializer([$normalizer]);
+        //$formatted = $serializer->normalize($listevents);
+        //return new JsonResponse($formatted);
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT c
+        FROM AppBundle:Evenement c where c.idAssociation=1'
+        );
+        $Clubs = $query->getArrayResult(); //get the result in an array structure
+        $response = new Response(json_encode($Clubs));// encoder le resultat (la valeur) en format json
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+
+    public function showAllMobileAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT e
+        FROM AppBundle:Evenement e '
+        );
+        $events = $query->getArrayResult();
+        $response = new Response(json_encode($events));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+    public function newMobileAction(Request $request)
+    {
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $evenement = new Evenement();
+
+        $evenement->setNomEvent($request->get('nomEvent'));
+        //$evenement->setDateDebutEvent($request->get('dateDeb'));
+        //$evenement->setDateFinEvent($request->get('dateFin'));
+        $evenement->setDateDebutEvent(new \DateTime('now'));
+        $evenement->setDateFinEvent(new \DateTime('now'));
+        $evenement->setLongitude($request->get('longitude'));
+        $evenement->setLatitude($request->get('latitude'));
+        $evenement->setDescription($request->get('description'));
+        $evenement->setCategorie($request->get('categorie'));
+        $evenement->setCreerLe(new \DateTime('now'));
+        //$evenement->setIdassociation($user);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($evenement);
+        $em->flush();
+
+        /* $normalizer = new ObjectNormalizer();
+         $normalizer->setIgnoredAttributes(array('creerLe'));
+         $encoder = new JsonEncoder();
+
+         $serializer = new Serializer([new ObjectNormalizer()]);
+         $formatted = $serializer->normalize($evenement);
+         return new JsonResponse($formatted);*/
+        //$events = $query->getArrayResult();
+        $response = new Response(json_encode($em));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+
+    public function findMobileAction($id)
+    {
+        $tasks = $this->getDoctrine()->getManager()
+            ->getRepository('AppBundle:Evenement')
+            ->find($id);
+
+        // $events = $tasks->getArrayResult();
+        //  $response = new Response(json_encode($tasks));
+        //$response->headers->set('Content-Type', 'application/json');
+        //return $response;
+
+        $serializer = new Serializer([new ObjectNormalizer()]);//serialiser l'objet
+        $formatted = $serializer->normalize($tasks);//turn le result en array et vice versa
+        return new JsonResponse($formatted);//encode la reponse normaliser
+    }
+
+    public function findMyMobileAction()
+    {
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+
+        $id = $user->getId();
+        $repository = $this->getDoctrine()
+            ->getRepository(Evenement::class);
+
+// createQueryBuilder() automatically selects FROM AppBundle:Product
+// and aliases it to "p"
+        $query = $repository->createQueryBuilder('c')
+            ->where('c.idAssociation = :id')
+            ->setParameter('id', $id)
+            ->getQuery();
+
+        $events = $query->getArrayResult();
+        $response = new Response(json_encode($events));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+    public function deleteMobileAction($id)
+    {
+        $em=$this->getDoctrine()->getManager();
+        $club= $em->getRepository('AppBundle:Evenement')->find($id);
+        //var_dump($club);
+        //die($club);
+        $em->remove($club);
+        $em->flush();
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($club);
+        return new JsonResponse($formatted);
+    }
+
+    public function  EditEventMobileAction(Request $request){
+
+        $id = $request->query->get('idEvent');
+        $em=$this->getDoctrine()->getManager();
+        $Event=$em->getRepository('AppBundle:Evenement')->find($id);
+        $nom = $request->query->get('nomEvent');
+        $dateDebut = $request->query->get('dateDeb');
+        $dateFin=$request->query->get('dateFin');
+        $description = $request->query->get('description');
+        $categorie=$request->query->get('categorie');
+
+        $Event->setNomEvent($nom);
+        //$Event->setDateDebutEvent($dateDebut);
+        // $Event->setDateFinEvent($dateFin);
+        $Event->setDescription($description);
+        $Event->setCategorie($categorie);
+        try {
+            $em->persist($Event);
+            $em->flush();
+        }
+        catch(\Exception $ex)
+        {
+            $data = [
+                'title' => 'validation error',
+                'message' => 'Some thing went Wrong',
+                'errors' => $ex->getMessage()
+            ];
+            $response = new JsonResponse($data,400);
+            return $response;
+        }
+        return $this->json(array('title'=>'successful','message'=> "Event Edited successfully"),200);
+    }
+
+    public function FeedBackMobileAction(Request $request,$id)
+    {
+        $repository = $this->getDoctrine()
+            ->getRepository('BenevoleBundle:Eventfeedback');
+
+        $query = $repository->createQueryBuilder('c')
+            ->where('c.idevenement = :id')
+            ->setParameter('id', $id)
+            ->getQuery();
+
+        $events = $query->getArrayResult();
+        $response = new Response(json_encode($events));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+
+        /*   $listFeed = $query->getResult();
+           $normalizer = new ObjectNormalizer();
+           $normalizer->setIgnoredAttributes(array('idevenement','idbenevole'));
+           $encoder = new JsonEncoder();
+
+           $serializer = new Serializer(array($normalizer), array($encoder));
+           $serializer->serialize(evenement::class, 'json');
+
+           $serializer = new Serializer([new ObjectNormalizer()]);
+           $formatted = $serializer->normalize($listFeed);
+           return new JsonResponse($formatted);*/
+        /*   $response = new Response(json_encode($listFeed));
+           $response->headers->set('Content-Type', 'application/json');
+           return $response;*/
+    }
+
 
     public function newAction(Request $request)
     {
@@ -215,10 +403,10 @@ class evenementController extends Controller
 
     }
 //Affichage feed back
-   public function FeedBackAction(Request $request,$id)
+    public function FeedBackAction(Request $request,$id)
     {
         $repository = $this->getDoctrine()
-            ->getRepository(Eventfeedback::class);
+            ->getRepository('BenevoleBundle:Eventfeedback');
 
         $query = $repository->createQueryBuilder('c')
             ->where('c.idevenement = :id')
@@ -226,8 +414,8 @@ class evenementController extends Controller
             ->getQuery();
 
         $listFeed = $query->getResult();
-       dump($listFeed);
-        return ($this->render('AssociationBundle:evenement:feed_back.html.twig',array ("listFeed"=>$listFeed)));
+        dump($listFeed);
+        return ($this->render('AssociationBundle:evenement:feedback.html.twig',array ("listFeed"=>$listFeed)));
     }
 
 

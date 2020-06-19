@@ -63,9 +63,10 @@
                 L.tileLayer('http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png').addTo(map); //will be our basemap.
                 function addpopup(lan,lat,desc){
                     var popup = L.popup()
-                        .setLatLng([lan, lat])
+                        .setLatLng([lat,lan])
                         .setContent(desc)
                         .openOn(map);
+                    map.panTo([lat,lan]);
 
                 }
 

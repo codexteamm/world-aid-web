@@ -7,8 +7,13 @@ use NecessiteuxBundle\Form\FeedbackType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\DependencyInjection\Tests\Compiler\F;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class FeedbackController extends Controller
 {
@@ -62,6 +67,84 @@ class FeedbackController extends Controller
         $em->remove($feedback);
         $em->flush();
         return $this->redirectToRoute('feedbacks');
+    }
+
+    public function allFeedbackMobileAction()
+    {
+        $feedbacks = $this->getDoctrine()->getManager()
+            ->getRepository('NecessiteuxBundle:Feedback')->findAll();
+        /****************************/
+        $normalizer = new ObjectNormalizer();
+        //$normalizer->setIgnoredAttributes(array('idCassocial'));
+        $encoder = new JsonEncoder();
+
+        $serializer = new Serializer(array($normalizer), array($encoder));
+        $serializer->serialize(DemandeAide::class, 'json');
+
+        /*********************************/
+
+        $serializer = new Serializer([$normalizer]);
+        $formatted = $serializer->normalize($feedbacks);
+        return new JsonResponse($formatted);
+    }
+
+    public function addFeedbackMobileAction(\Symfony\Component\HttpFoundation\Request $request)
+    {
+        //$user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $feedback = new Feedback();
+        $feedback->setTitre($request->get('titre'));
+        $feedback->setMessage($request->get('message'));
+        //$feedback->setIdCassocial($user);
+
+        $em->persist($feedback);
+        $em->flush();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($feedback);
+        return new JsonResponse($formatted);
+    }
+
+    public function findFeedbackMobileAction($id)
+    {
+        $requests = $this->getDoctrine()->getManager()
+            ->getRepository('NecessiteuxBundle:Feedback')
+            ->find($id);
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($requests);
+        return new JsonResponse($formatted);
+    }
+
+    public function updateFeedbackMobileAction(\Symfony\Component\HttpFoundation\Request $request,$id)
+    {
+        //get the request with $id with manager permission
+        $em = $this->getDoctrine()->getManager();
+        $feedback = $em->getRepository('NecessiteuxBundle:Feedback')->find($id);
+
+        $feedback->setTitre($request->get('titre'));
+        $feedback->setMessage($request->get('message'));
+        $em->flush();
+
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setIgnoredAttributes(array('idCassocial'));
+        $encoder = new JsonEncoder();
+
+        $serializer = new Serializer(array($normalizer), array($encoder));
+        $serializer->serialize(Feedback::class, 'json');
+
+        $serializer = new Serializer([$normalizer]);
+        $formatted = $serializer->normalize($feedback);
+        return new JsonResponse($formatted);
+    }
+
+    public function deleteFeedbackMobileAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $feedback = $em->getRepository(Feedback::class)->find($id);
+        $em->remove($feedback);
+        $em->flush();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($feedback);
+        return new JsonResponse($formatted);
     }
 
 }

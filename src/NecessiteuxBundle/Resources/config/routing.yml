@@ -22,11 +22,12 @@ delete:
     defaults:
         _controller: NecessiteuxBundle:demandeAide:delete
 
-confirm:
-    path: /confirm/{id}
-    defaults:
-        _controller: NecessiteuxBundle:demandeAide:confirm
 
+
+confirmRequestMobile:
+    path: /confirmRequestMobile/{id}
+    defaults:
+        _controller: NecessiteuxBundle:demandeAide:confirmRequestMobile
 PDF:
     path: /pdf
     defaults:
@@ -51,3 +52,59 @@ delete2:
     path: /delete2/{id}
     defaults:
         _controller: NecessiteuxBundle:Feedback:delete
+
+AllRequestsMobile:
+    path: /allrequestsMobile
+    defaults:
+        _controller: NecessiteuxBundle:demandeAide:AllRequestsMobile
+
+addRequestMobile:
+    path: /addRequestMobile
+    defaults:
+        _controller: NecessiteuxBundle:demandeAide:addRequestMobile
+
+findRequestMobile:
+    path: /findRequestMobile/{id}
+    defaults:
+        _controller: NecessiteuxBundle:demandeAide:findRequestMobile
+
+updateRequestMobile:
+    path: /updateRequestMobile/{id}
+    defaults:
+        _controller: NecessiteuxBundle:demandeAide:updateRequestMobile
+
+deleteRequestMobile:
+    path: /deleteRequestMobile/{id}
+    defaults:
+        _controller: NecessiteuxBundle:demandeAide:deleteRequestMobile
+
+AllFeedbacksMobile:
+    path: /allfeedbacksMobile
+    defaults:
+        _controller: NecessiteuxBundle:Feedback:AllFeedbackMobile
+
+addFeedbackMobile:
+    path: /addFeedbackMobile
+    defaults:
+        _controller: NecessiteuxBundle:Feedback:addFeedbackMobile
+
+findFeedbackMobile:
+    path: /findFeedbackMobile/{id}
+    defaults:
+        _controller: NecessiteuxBundle:Feedback:findFeedbackMobile
+
+updateFeedbackMobile:
+    path: /updateFeedbackMobile/{id}
+    defaults:
+        _controller: NecessiteuxBundle:Feedback:updateFeedbackMobile
+
+deleteFeedbackMobile:
+    path: /deleteFeedbackMobile/{id}
+    defaults:
+        _controller: NecessiteuxBundle:Feedback:deleteFeedbackMobile
+
+
+confirm:
+    path:   /{id}/confirm
+    defaults:
+        _controller: NecessiteuxBundle:demandeAide:confirm

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use BenevoleBundle\Entity\Article;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -34,7 +35,9 @@ class SecurityController extends Controller
             return $this->render('@Necessiteux/Default/index.html.twig');
         }
         else if ($authChecker->isGranted('ROLE_BENEVOLE')){
-            return $this->render('@Benevole/benevole_home.html.twig');
+            $listArticles = $this->getDoctrine()
+                ->getRepository(Article::class)->findAll();
+            return ($this->render('@Benevole/DonMateriel/allArticles.html.twig', array("listeArticles" => $listArticles)));
         }
         else if ($authChecker->isGranted('ROLE_ASSOCIATION')){
             return $this->render('@Association/Default/index.html.twig');

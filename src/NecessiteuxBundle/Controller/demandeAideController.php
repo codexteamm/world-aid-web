@@ -2,6 +2,7 @@
 
 namespace NecessiteuxBundle\Controller;
 
+use http\Env\Request;
 use NecessiteuxBundle\Entity\DemandeAide;
 use NecessiteuxBundle\Form\DemandeAideType;
 use NecessiteuxBundle\Entity\Notification;
@@ -9,6 +10,11 @@ use NecessiteuxBundle\Entity\Notification;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Dompdf\Dompdf;
 use Dompdf\Options;
@@ -47,6 +53,18 @@ class demandeAideController extends Controller
         $demande->setEtat('1');
         $em->flush();
         return $this->redirectToRoute('demandes');
+
+    }
+
+    public function confirmRequestMobileAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $demande = $em->getRepository(DemandeAide::class)->find($id);
+        $demande->setEtat('1');
+        $em->flush();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($demande);
+        return new JsonResponse($formatted);
 
     }
 
@@ -131,5 +149,83 @@ class demandeAideController extends Controller
             "Attachment" => false
         ]);
 
+    }
+
+    public function allRequestsMobileAction()
+    {
+        $requests = $this->getDoctrine()->getManager()
+            ->getRepository('NecessiteuxBundle:DemandeAide')->findAll();
+        /****************************/
+        $normalizer = new ObjectNormalizer();
+        //$normalizer->setIgnoredAttributes(array('idCassocial'));
+        $encoder = new JsonEncoder();
+
+        $serializer = new Serializer(array($normalizer), array($encoder));
+        $serializer->serialize(DemandeAide::class, 'json');
+
+        /*********************************/
+
+        $serializer = new Serializer([$normalizer]);
+        $formatted = $serializer->normalize($requests);
+        return new JsonResponse($formatted);
+    }
+
+    public function addRequestMobileAction(\Symfony\Component\HttpFoundation\Request $request)
+    {
+        //$user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $demande_aide = new DemandeAide();
+        $demande_aide->setTitre($request->get('titre'));
+        $demande_aide->setDescription($request->get('description'));
+        //$demande_aide->setIdCassocial($user);
+
+        $em->persist($demande_aide);
+        $em->flush();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($demande_aide);
+        return new JsonResponse($formatted);
+    }
+
+    public function findRequestMobileAction($id)
+    {
+        $requests = $this->getDoctrine()->getManager()
+            ->getRepository('NecessiteuxBundle:DemandeAide')
+            ->find($id);
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($requests);
+        return new JsonResponse($formatted);
+    }
+
+    public function updateRequestMobileAction(\Symfony\Component\HttpFoundation\Request $request,$id)
+    {
+        //get the request with $id with manager permission
+        $em = $this->getDoctrine()->getManager();
+        $demande_aide = $em->getRepository('NecessiteuxBundle:DemandeAide')->find($id);
+
+        $demande_aide->setTitre($request->get('titre'));
+        $demande_aide->setDescription($request->get('description'));
+        $em->flush();
+
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setIgnoredAttributes(array('idCassocial'));
+        $encoder = new JsonEncoder();
+
+        $serializer = new Serializer(array($normalizer), array($encoder));
+        $serializer->serialize(DemandeAide::class, 'json');
+
+        $serializer = new Serializer([$normalizer]);
+        $formatted = $serializer->normalize($demande_aide);
+        return new JsonResponse($formatted);
+    }
+
+    public function deleteRequestMobileAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $demande_aide = $em->getRepository(DemandeAide::class)->find($id);
+        $em->remove($demande_aide);
+        $em->flush();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($demande_aide);
+        return new JsonResponse($formatted);
     }
 }

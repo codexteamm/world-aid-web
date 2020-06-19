@@ -8,11 +8,11 @@
         {{ campement.description }}
     </p>
 
-    <p> this camp is supported by</p>
+    <p> this is all email of camps hows support  this camp</p>
 
     <ul class="list-group">
         {% for camp in campement.idassociation %}
-            <li class="list-group-item">{{ camp }}</li>
+            <li class="list-group-item">{{ camp }} : {{ camp.email }}  </li>
         {% endfor %}
 
 

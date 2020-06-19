@@ -59,7 +59,7 @@
 
 
                                 {% if listecamp not in user.idcampement %}
-                                    <a href="{{ path('takeCharge',{'id':listecamp.id}) }}" class="btn btn-outline-success">takeCharge</a>
+                                    <a href="{{ path('takeCharge',{'id':listecamp.id}) }}" class="btn btn-outline-success" onclick="return confirm('Are you sure?')">takeCharge</a>
                                 {% endif %}
                                 {% if listecamp not in user.idcampement %}{% endif %}
 

@@ -1,102 +1,161 @@
-
 association:
-    resource: "@AssociationBundle/Resources/config/routing.yml"
-    prefix:   /association
+  resource: "@AssociationBundle/Resources/config/routing.yml"
+  prefix:   /association
 
 benevole:
-    resource: "@BenevoleBundle/Resources/config/routing.yml"
-    prefix:   /benevole
+  resource: "@BenevoleBundle/Resources/config/routing.yml"
+  prefix:   /benevole
 
 necessiteux:
-    resource: "@NecessiteuxBundle/Resources/config/routing.yml"
-    prefix:   /necessiteux
+  resource: "@NecessiteuxBundle/Resources/config/routing.yml"
+  prefix:   /necessiteux
 
 app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+  resource: '@AppBundle/Controller/'
+  type: annotation
 fos_user:
-    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+  resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 login:
-    path: /login
-    defaults:
-        _controller: AppBundle:Controller:DefaultController
-        template:    login.html.twig
+  path: /login
+  defaults:
+    _controller: AppBundle:Controller:DefaultController
+    template:    login.html.twig
 
 logout:
-    path: /logout
-    defaults:
-        _controller: AppBundle:Controller:DefaultController
-        template:    logout.html.twig
+  path: /logout
+  defaults:
+    _controller: AppBundle:Controller:DefaultController
+    template:    logout.html.twig
 
 register:
-    path: /register
-    defaults:
-         _controller: AppBundle:Controller:DefaultController
-         template:    register.html.twig
+  path: /register
+  defaults:
+    _controller: AppBundle:Controller:DefaultController
+    template:    register.html.twig
 
 user_homepage:
-    path: /user_homepage
-    defaults:
-        _controller: AppBundle:Controller:DefaultController
-        template:    index2.html.twig
+  path: /user_homepage
+  defaults:
+    _controller: AppBundle:Controller:DefaultController
+    template:    index2.html.twig
 easy_admin_bundle:
-    resource: "@EasyAdminBundle/Controller/AdminController.php"
-    type:     annotation
-    prefix:   /dashboard
+  resource: "@EasyAdminBundle/Controller/AdminController.php"
+  type:     annotation
+  prefix:   /dashboard
 
 creer:
-    path:     /{id}/create
-    defaults: { _controller: BenevoleBundle:DonMaterielController:add}
+  path:     /{id}/create
+  defaults: { _controller: BenevoleBundle:DonMaterielController:add}
 
 lire:
-    path:     /readdon
-    defaults: { _controller: BenevoleBundle:DonMaterielController:read}
+  path:     /readdon
+  defaults: { _controller: BenevoleBundle:DonMaterielController:read}
 
 deletedon:
-    path:     /deletedon/{id}
-    defaults: { _controller: BenevoleBundle:DonMaterielController:delete}
+  path:     /deletedon/{id}
+  defaults: { _controller: BenevoleBundle:DonMaterielController:delete}
 
 updatedon:
-    path:     /updatedon/{id}
-    defaults: { _controller: BenevoleBundle:DonMaterielController:update}
+  path:     /updatedon/{id}
+  defaults: { _controller: BenevoleBundle:DonMaterielController:update}
 
 pdf:
-    path:     /pdf
-    defaults: { _controller: BenevoleBundle:DonMaterielController:pdf}
+  path:     /pdf
+  defaults: { _controller: BenevoleBundle:DonMaterielController:pdf}
 
 checkout:
-    path:    /checkout
-    defaults: { _controller: BenevoleBundle:DonMaterielController:checkout}
+  path:    /checkout
+  defaults: { _controller: BenevoleBundle:DonMaterielController:checkout}
 
 prepare:
-    path:    /prepare
-    defaults: { _controller: BenevoleBundle:DonMaterielController:prepare}
+  path:    /prepare
+  defaults: { _controller: BenevoleBundle:DonMaterielController:prepare}
 
 
 addArticle:
-    path:    /{id}/addArticle
-    defaults: { _controller: BenevoleBundle:Article:addArticle}
+  path:    /{id}/addArticle
+  defaults: { _controller: BenevoleBundle:Article:addArticle}
 
 showArticle:
-    path:   /showArticle
-    defaults: { _controller: BenevoleBundle:Article:showArticle}
+  path:   /showArticle
+  defaults: { _controller: BenevoleBundle:Article:showArticle}
 
 showAllArticles:
-    path:   /showAllArticles
-    defaults: { _controller: BenevoleBundle:Article:showAllArticles}
+  path:   /showAllArticles
+  defaults: { _controller: BenevoleBundle:Article:showAllArticles}
 
 readArticleByIdEvent:
-    path:    /{id}/readArticleByIdEvent
-    defaults: { _controller: BenevoleBundle:Article:readArticleByIdEvent}
+  path:    /{id}/readArticleByIdEvent
+  defaults: { _controller: BenevoleBundle:Article:readArticleByIdEvent}
 
 deleteArticle:
-    path:   /deleteArticle/{id}
-    defaults: { _controller: BenevoleBundle:Article:deleteArticle}
+  path:   /deleteArticle/{id}
+  defaults: { _controller: BenevoleBundle:Article:deleteArticle}
 
 updateArticle:
-    path:   /updateArticle/{id}
-    defaults: { _controller: BenevoleBundle:Article:updateArticle}
+  path:   /updateArticle/{id}
+  defaults: { _controller: BenevoleBundle:Article:updateArticle}
 
 showDonationByEvent:
-    path:  /{id}/readByIdEvent
-    defaults: { _controller: BenevoleBundle:DonMaterielController:readByIdEvent}
+  path:  /{id}/readByIdEvent
+  defaults: { _controller: BenevoleBundle:DonMaterielController:readByIdEvent}
+
+loginMobile:
+  path:     /loginMobile/{username}/{password}
+  defaults: { _controller: AppBundle:Default:loginMobile }
+
+addUser:
+  path:     /addUser/{username}/{email}/{password}/{rib}/{adresse}/{categorie}/{logo}/{numero}
+  defaults: { _controller: AppBundle:Default:addUser }
+
+addBen:
+  path:     /addBen/{username}/{email}/{password}/{nom}/{prenom}/{pays}/{logo}
+  defaults: { _controller: AppBundle:Default:addBen }
+
+addNec:
+  path:     /addNec/{username}/{email}/{password}/{nom}/{prenom}/{pays}/{description}/{logo}
+  defaults: { _controller: AppBundle:Default:addNec }
+
+showuser:
+  path:     /showuser
+  defaults: { _controller: AppBundle:Default:showuser }
+
+deleteUser:
+  path:     /deleteUser/{id}
+  defaults: { _controller: AppBundle:Default:deleteUser }
+
+findUser:
+  path:     /findUser/{id}
+  defaults: { _controller: AppBundle:Default:findUser }
+
+updateUser:
+  path:     /updateUser/{username}/{email}/{password}/{rib}/{categorie}/{logo}/{numero}/{pays}/{adresse}/{id}
+  defaults: { _controller: AppBundle:Default:updateUser }
+
+updateBen:
+  path:     /updateBen/{username}/{email}/{password}/{logo}/{nom}/{prenom}/{pays}/{id}
+  defaults: { _controller: AppBundle:Default:updateBen }
+
+updateNece:
+  path:     /updateNece/{username}/{email}/{password}/{logo}/{nom}/{prenom}/{pays}/{description}/{id}
+  defaults: { _controller: AppBundle:Default:updateNece }
+
+findDonMobile:
+    path:  /{id}/findDonMobile
+    defaults: { _controller: BenevoleBundle:DonMaterielController:findDonMobile}
+allDonsMobile:
+    path:  /allDonsMobile
+    defaults: { _controller: BenevoleBundle:DonMaterielController:allDonsMobile}
+newDonMobile:
+    path:   /newDonMobile
+    defaults: { _controller: BenevoleBundle:DonMaterielController:newDonMobile}
+readEventMobile:
+    path:  /readEventMobile
+    defaults: { _controller: BenevoleBundle:DonMaterielController:readEventMobile}
+deleteDonMobile:
+    path:  /deleteDonMobile
+    defaults: { _controller: BenevoleBundle:DonMaterielController:deleteDonMobile}
+editDonMobile:
+    path:   /editDonMobile
+    defaults: { _controller: BenevoleBundle:DonMaterielController:editDonMobile}
+

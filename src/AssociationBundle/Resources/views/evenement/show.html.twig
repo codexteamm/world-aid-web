@@ -95,10 +95,11 @@
                 maxWidth: 400
 
             })
-                .setLatLng([lan, lat])
+                .setLatLng([lat,lan])
                 .setContent(desc)
                 .openOn(map);
-            map.panTo([lan,lat]);
+            map.panTo([lat,lan]);
+
 
             /*  Array.from(Element.querySelectorAll(".abc")).forEach((item) => {
                  console.log(item.dataset.lat, item.dataset.lng)

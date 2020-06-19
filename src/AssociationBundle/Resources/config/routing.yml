@@ -1,3 +1,25 @@
+showAllMobile:
+  path:     /showAllMobile
+  defaults: { _controller: AssociationBundle:evenement:showAllMobile }
+
+showMyMobile:
+  path:     /showMyMobile
+  defaults: { _controller: AssociationBundle:evenement:showMyMobile }
+newMobile:
+  path:     /newMobile
+  defaults: { _controller: AssociationBundle:evenement:newMobile }
+
+deleteMobile:
+  path:  /deleteMobile/{id}
+  defaults: { _controller: AssociationBundle:evenement:deleteMobile }
+
+EditEventMobile:
+  path:  /EditEventMobile
+  defaults: { _controller: AssociationBundle:evenement:EditEventMobile }
+
+FeedBackMobile:
+  path:  /FeedBackMobile/{id}
+  defaults: { _controller: AssociationBundle:evenement:FeedBackMobile }
 allmobile:
   path:     /allmobile
   defaults: { _controller: AssociationBundle:campement:allmobile }
